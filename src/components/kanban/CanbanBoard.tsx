@@ -11,7 +11,7 @@ const statusColumn: Column[] = [
 
 export default function CanbanBoard({ tasks }: { tasks: Task[] }) {
   return (
-    <div className="flex gap-6 overflow-x-auto">
+    <div className="grid grid-cols-4 gap-6 overflow-x-auto">
       {statusColumn.map((column) => {
         const filteredTasks = tasks.filter(
           (task) => task.status === column.value
