@@ -6,7 +6,7 @@ export default function CanbanColumn({ tasks }: { tasks: Task[] }) {
   const formattedStatus = status.replace(/_/g, " ").toUpperCase();
 
   return (
-    <div className="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 w-80 flex flex-col">
+    <div className="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
       <h3 className="text-xl font-semibold mb-4 text-gray-700 border-b border-gray-300 pb-2">
         {formattedStatus}
       </h3>
