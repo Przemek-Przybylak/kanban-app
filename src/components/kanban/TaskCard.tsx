@@ -1,3 +1,4 @@
+import { useTaskModalStore } from "@/stores/useTaskModalStore";
 import { Task } from "@/types/task";
 
 function StatusBadge({ status }: { status: string }) {
@@ -22,9 +23,13 @@ function StatusBadge({ status }: { status: string }) {
 
 export default function TaskCard({ task }: { task: Task }) {
   const { title, description, dueDate, project, status } = task;
+  const { openTaskModal } = useTaskModalStore();
 
   return (
-    <div className="bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+    <div
+      className="bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+      onClick={() => openTaskModal(task)}
+    >
       <h3 className="text-xl font-semibold mb-2">{title}</h3>
       <p className="text-gray-700 mb-3">{description}</p>
 
