@@ -1,5 +1,6 @@
 import { useTaskModalStore } from "@/stores/useTaskModalStore";
 import { Task } from "@/types/task";
+import { StatusBadge } from "./statusBadge";
 
 export default function TaskModal() {
   const { selectedTask, closeTaskModal } = useTaskModalStore();
@@ -16,18 +17,9 @@ export default function TaskModal() {
     approvedBy,
   } = selectedTask;
 
-  // Mapa status → kolor badge
-  const statusColors: Record<string, string> = {
-    todo: "bg-gray-200 text-gray-800",
-    in_progress: "bg-blue-200 text-blue-800",
-    review: "bg-yellow-200 text-yellow-800",
-    done: "bg-green-200 text-green-800",
-  };
-  const statusClass = statusColors[status] ?? statusColors.todo;
-
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center"
+      className="fixed inset-0 bg-neutral-400 bg-opacity-50 z-50 flex items-center justify-center"
       onClick={closeTaskModal}
     >
       <div
@@ -54,12 +46,7 @@ export default function TaskModal() {
             Termin: <strong className="text-gray-700">{dueDate}</strong>
           </span>
           <span>
-            Status:{" "}
-            <span
-              className={`inline-block px-3 py-1 text-xs font-semibold rounded-full ${statusClass}`}
-            >
-              {status.replace(/_/g, " ").toUpperCase()}
-            </span>
+            Status: <StatusBadge status={status} />
           </span>
         </div>
 
