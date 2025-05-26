@@ -16,7 +16,6 @@ export default function CanbanBoard({ tasks }: { tasks: Task[] }) {
         const filteredTasks = tasks.filter(
           (task) => task.status === column.value
         );
-
         return <CanbanColumn key={column.colId} tasks={filteredTasks} />;
       })}
     </div>

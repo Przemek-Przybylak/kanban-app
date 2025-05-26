@@ -13,7 +13,6 @@ export default function TaskCard({ task }: { task: Task }) {
     >
       <h3 className="text-xl font-semibold mb-2">{title}</h3>
       <p className="text-gray-700 mb-3">{description}</p>
-
       <div className="flex flex-wrap gap-3 text-sm text-gray-600">
         <div>
           <strong>Due:</strong> {dueDate}

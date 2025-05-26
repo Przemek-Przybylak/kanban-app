@@ -26,18 +26,13 @@ export default function TaskModal() {
         className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-lg mx-4 relative"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button */}
         <button
           onClick={closeTaskModal}
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
         >
           ✕
         </button>
-
-        {/* Header */}
         <h2 className="text-2xl font-bold mb-4 text-gray-800">{title}</h2>
-
-        {/* Meta row */}
         <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 mb-6">
           <span>
             Projekt: <strong className="text-gray-700">{project}</strong>
@@ -49,13 +44,9 @@ export default function TaskModal() {
             Status: <StatusBadge status={status} />
           </span>
         </div>
-
-        {/* Description */}
         <div className="prose prose-sm text-gray-700 mb-6">
           <p>{description}</p>
         </div>
-
-        {/* Assignees */}
         <div className="mb-6">
           <h3 className="font-semibold text-gray-800 mb-2">
             Osoby przypisane:
@@ -71,8 +62,6 @@ export default function TaskModal() {
             ))}
           </ul>
         </div>
-
-        {/* Approval */}
         {approvedBy ? (
           <p className="text-sm text-green-600">
             ✅ Zatwierdzone przez: <strong>{approvedBy}</strong>
