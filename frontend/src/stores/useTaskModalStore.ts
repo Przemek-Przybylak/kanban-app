@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Task } from "@/types/task";
+import { Task } from "../types/task";
 
 interface TaskModalStore {
   selectedTask: Task | null;

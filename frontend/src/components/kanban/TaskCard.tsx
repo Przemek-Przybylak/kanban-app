@@ -1,5 +1,5 @@
-import { useTaskModalStore } from "@/stores/useTaskModalStore";
-import { Task } from "@/types/task";
+import { useTaskModalStore } from "../../stores/useTaskModalStore";
+import { Task } from "../../types/task";
 import { StatusBadge } from "../modals/statusBadge";
 
 export default function TaskCard({ task }: { task: Task }) {

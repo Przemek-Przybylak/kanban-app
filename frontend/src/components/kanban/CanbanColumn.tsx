@@ -1,4 +1,4 @@
-import { Task } from "@/types/task";
+import { Task } from "../../types/task";
 import TaskCard from "./TaskCard";
 
 export default function CanbanColumn({ tasks }: { tasks: Task[] }) {
