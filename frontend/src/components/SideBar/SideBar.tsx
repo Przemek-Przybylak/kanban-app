@@ -1,6 +1,6 @@
 export default function SideBar() {
   return (
-    <div className=" bg-gray-200 p-4 flex-1">
+    <div className=" bg-gray-200 p-4 flex-1 w-1/4">
       <h2 className="text-xl font-bold mb-4 ">Side Bar</h2>
       <ul>
         <li className="mb-2">
