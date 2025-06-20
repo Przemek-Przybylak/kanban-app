@@ -3,8 +3,8 @@
 import { useEffect } from "react";
 import { useProjectsStore } from "../../../stores/useProjectsStore";
 import { useParams } from "next/navigation";
-import DashboardPage from "../../dashboard/page";
 import StatusWrapper from "../../../components/StatusWrapper/StatusWrapper";
+import Dashboard from "../../../components/Dashboard/Dashboard";
 
 export default function ProjectPage() {
   const { fetchProject, project, loading, error } = useProjectsStore();
@@ -22,7 +22,7 @@ export default function ProjectPage() {
   return (
     <>
       <StatusWrapper loading={loading} error={error}>
-        {project && <DashboardPage project={project} />}
+        {project && <Dashboard project={project} />}
       </StatusWrapper>
     </>
   );

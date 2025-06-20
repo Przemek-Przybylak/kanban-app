@@ -8,7 +8,7 @@ type props = {
   project: Project;
 };
 
-export default function DashboardPage({ project }: props) {
+export default function Dashboard({ project }: props) {
   const { selectedTask } = useTaskModalStore();
 
   return (
