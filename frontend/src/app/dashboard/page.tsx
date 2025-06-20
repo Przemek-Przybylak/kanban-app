@@ -4,7 +4,7 @@ import TaskModal from "../../components/modals/TaskModal";
 import { useTaskModalStore } from "../../stores/useTaskModalStore";
 import { Project } from "../../types/projects";
 
-interface props {
+type props {
   project: Project;
 }
 
