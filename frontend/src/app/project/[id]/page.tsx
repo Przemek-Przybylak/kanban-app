@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useEffect } from "react";
+import { useEffect } from "react";
 import { useProjectsStore } from "../../../stores/useProjectsStore";
 import { useParams } from "next/navigation";
 import DashboardPage from "../../dashboard/page";
