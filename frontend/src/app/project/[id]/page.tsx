@@ -4,6 +4,7 @@ import { use, useEffect } from "react";
 import { useProjectsStore } from "../../../stores/useProjectsStore";
 import { useParams } from "next/navigation";
 import DashboardPage from "../../dashboard/page";
+import StatusWrapper from "../../../components/StatusWrapper/StatusWrapper";
 
 export default function ProjectPage() {
   const { fetchProject, project, loading, error } = useProjectsStore();
@@ -18,7 +19,11 @@ export default function ProjectPage() {
     }
   }, [id, fetchProject]);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-  return <>{project && <DashboardPage project={project} />}</>;
+  return (
+    <>
+      <StatusWrapper loading={loading} error={error}>
+        {project && <DashboardPage project={project} />}
+      </StatusWrapper>
+    </>
+  );
 }
