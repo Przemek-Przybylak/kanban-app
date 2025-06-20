@@ -6,3 +6,11 @@ export async function fetchProjects() {
 
   return response.json();
 }
+
+export const fetchProject = async (id: number) => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/projects/${id}`
+  );
+  if (!response.ok) throw new Error("Failed to fetch project");
+  return response.json();
+};
