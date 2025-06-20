@@ -1,29 +1,26 @@
 import { create } from "zustand";
 import { Project } from "../types/projects";
+import { fetchProjects } from "../lib/api";
 
 interface ProjectsStore {
   projects: Project[];
-  setProjects: (projects: Project[]) => void;
-  addProject: (project: Project) => void;
-  updateProject: (updatedProject: Project) => void;
-  deleteProject: (projectId: number) => void;
+  error: string | null;
+  loading: boolean;
+  fetchProjects: () => Promise<void>;
 }
 
 export const useProjectsStore = create<ProjectsStore>((set) => ({
   projects: [],
-  setProjects: (projects) => set({ projects }),
-  addProject: (project) =>
-    set((state) => ({ projects: [...state.projects, project] })),
-  updateProject: (updatedProject) =>
-    set((state) => ({
-      projects: state.projects.map((project) =>
-        project.projectId === updatedProject.projectId
-          ? updatedProject
-          : project
-      ),
-    })),
-  deleteProject: (id) =>
-    set((state) => ({
-      projects: state.projects.filter((project) => project.projectId !== id),
-    })),
+  error: null,
+  loading: false,
+
+  fetchProjects: async () => {
+    set({ loading: true, error: null });
+    try {
+      const projects = await fetchProjects();
+      set({ projects, loading: false });
+    } catch (error) {
+      set({ error: (error as Error).message, loading: false });
+    }
+  },
 }));
