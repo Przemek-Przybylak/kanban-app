@@ -4,9 +4,9 @@ import TaskModal from "../../components/modals/TaskModal";
 import { useTaskModalStore } from "../../stores/useTaskModalStore";
 import { Project } from "../../types/projects";
 
-type props {
+type props = {
   project: Project;
-}
+};
 
 export default function DashboardPage({ project }: props) {
   const { selectedTask } = useTaskModalStore();
