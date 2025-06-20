@@ -14,7 +14,7 @@ export default function SideBar() {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <aside className=" bg-gray-200 p-4 flex-1 w-1/4">
+    <aside className=" bg-gray-200 p-4 flex-1 w-1/5 max-w-[250px]">
       <h2 className="text-xl font-bold mb-4 ">Projects</h2>
       <ul>
         {projects.map((project) => (
