@@ -17,7 +17,7 @@ export const useProjectsStore = create<ProjectsStore>((set) => ({
   fetchProjects: async () => {
     set({ loading: true, error: null });
     try {
-      const projects = await fetchProjects();
+      const projects: Project[] = await fetchProjects();
       set({ projects, loading: false });
     } catch (error) {
       set({ error: (error as Error).message, loading: false });
