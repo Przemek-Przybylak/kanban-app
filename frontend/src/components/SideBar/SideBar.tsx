@@ -21,7 +21,7 @@ export default function SideBar() {
           <Link
             key={project.projectId}
             className="mb-2"
-            href={`/projects/${project.projectId}`}
+            href={`/project/${project.projectId}`}
           >
             {project.title}
           </Link>
@@ -30,4 +30,3 @@ export default function SideBar() {
     </aside>
   );
 }
-1;
