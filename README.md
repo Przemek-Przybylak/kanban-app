@@ -105,7 +105,9 @@ npm run dev
 # Set your .env values as needed, e.g.:
 NEXT_PUBLIC_API_URL=http://localhost:3001/api
 
-🙌 Final Thoughts
+```
+
+## 🙌 Final Thoughts
+
 This is an evolving project built for learning and showcasing modern full-stack development.
 Every week I'm expanding it with new features and refinements. Stay tuned!
-```
