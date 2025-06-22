@@ -1,5 +1,5 @@
 export interface Task {
-  id: number;
+  id: string;
   title: string;
   description: string;
   dueDate: string;
@@ -10,18 +10,18 @@ export interface Task {
 }
 
 export interface Project {
-  projectId: number;
+  projectId: string; // Changed to string for UUID compatibility
   title: string;
   tasks: Task[];
 }
 
 export const projects: Project[] = [
   {
-    projectId: 1,
+    projectId: "1",
     title: "Learn coding",
     tasks: [
       {
-        id: 1,
+        id: "1",
         title: "Zaprojektować UI strony głównej",
         description: "Layout i elementy wizualne",
         dueDate: "2025-06-01",
@@ -31,7 +31,7 @@ export const projects: Project[] = [
         approvedBy: null,
       },
       {
-        id: 2,
+        id: "2",
         title: "Zaimplementować backend API",
         description: "Endpointy do zadań",
         dueDate: "2025-06-10",
@@ -41,7 +41,7 @@ export const projects: Project[] = [
         approvedBy: null,
       },
       {
-        id: 3,
+        id: "3",
         title: "Dodanie responsywności do UI",
         description: "Media queries, testy mobilne",
         dueDate: "2025-06-12",
@@ -51,7 +51,7 @@ export const projects: Project[] = [
         approvedBy: null,
       },
       {
-        id: 4,
+        id: "4",
         title: "Testy jednostkowe komponentów",
         description: "RTL, Jest",
         dueDate: "2025-06-08",
@@ -61,7 +61,7 @@ export const projects: Project[] = [
         approvedBy: null,
       },
       {
-        id: 5,
+        id: "5",
         title: "Deploy na Vercel",
         description: "Pierwsze wypchnięcie projektu",
         dueDate: "2025-06-15",
@@ -71,7 +71,7 @@ export const projects: Project[] = [
         approvedBy: null,
       },
       {
-        id: 6,
+        id: "6",
         title: "Setup bazy danych",
         description: "MongoDB Atlas",
         dueDate: "2025-06-05",
@@ -81,7 +81,7 @@ export const projects: Project[] = [
         approvedBy: null,
       },
       {
-        id: 7,
+        id: "7",
         title: "Konfiguracja ESLint i Prettier",
         description: "Lintowanie i formatowanie kodu",
         dueDate: "2025-06-02",
@@ -91,7 +91,7 @@ export const projects: Project[] = [
         approvedBy: null,
       },
       {
-        id: 8,
+        id: "8",
         title: "Zarządzanie stanem w aplikacji",
         description: "React Context / Zustand",
         dueDate: "2025-06-07",
@@ -101,7 +101,7 @@ export const projects: Project[] = [
         approvedBy: null,
       },
       {
-        id: 9,
+        id: "9",
         title: "Obsługa błędów",
         description: "Zabezpieczenie API",
         dueDate: "2025-06-11",
@@ -111,7 +111,7 @@ export const projects: Project[] = [
         approvedBy: null,
       },
       {
-        id: 10,
+        id: "10",
         title: "Dodanie logowania",
         description: "Prosty auth (mock)",
         dueDate: "2025-06-09",
