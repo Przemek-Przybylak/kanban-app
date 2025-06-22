@@ -1,5 +1,5 @@
 export interface Column {
-  colId: string;
+  colId: number;
   colTitle: string;
   value: string;
 }
