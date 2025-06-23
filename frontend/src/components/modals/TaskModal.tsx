@@ -1,24 +1,25 @@
-import { useTaskModalStore } from "../../stores/useTaskModalStore";
 import { StatusBadge } from "./statusBadge";
 import { ModalWrapper } from "./ModalsWrapper";
+import { useModalStore } from "../../stores/useModalStore";
+import { Task } from "../../types/task";
 
 export default function TaskModal() {
-  const { selectedTask, closeTaskModal } = useTaskModalStore();
+  const { data, type, closeModal } = useModalStore();
 
-  if (!selectedTask) return null;
-
+  if (type !== "task") return null;
+  const task = data as Task;
   const {
     title,
-    description,
-    dueDate,
     project,
+    dueDate,
     status,
+    description,
     assignees,
     approvedBy,
-  } = selectedTask;
+  } = task;
 
   return (
-    <ModalWrapper isOpen={!!selectedTask} onClose={closeTaskModal}>
+    <ModalWrapper isOpen={!!data} onClose={closeModal}>
       <h2 className="text-2xl font-bold mb-4 text-gray-800">{title}</h2>
       <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 mb-6">
         <span>
@@ -37,14 +38,14 @@ export default function TaskModal() {
       <div className="mb-6">
         <h3 className="font-semibold text-gray-800 mb-2">Osoby przypisane:</h3>
         <ul className="flex flex-wrap gap-2">
-          {assignees.map((name) => (
+          {/* {data.type==='task' && assignees.map((name) => (
             <li
               key={name}
               className="bg-gray-100 px-3 py-1 rounded-full text-sm text-gray-700"
             >
               {name}
             </li>
-          ))}
+          ))} */}
         </ul>
       </div>
       {approvedBy ? (
