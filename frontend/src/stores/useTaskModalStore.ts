@@ -1,14 +1,21 @@
 import { create } from "zustand";
+import { Project } from "../types/projects";
 import { Task } from "../types/task";
 
-interface TaskModalStore {
-  selectedTask: Task | null;
-  openTaskModal: (task: Task) => void;
-  closeTaskModal: () => void;
+type ModalType = "task" | "project" | null;
+
+interface ModalState {
+  isOpen: boolean;
+  type: ModalType;
+  data: Project | Task | null;
+  openModal: (type: ModalType, data?: Project | Task) => void;
+  closeModal: () => void;
 }
 
-export const useTaskModalStore = create<TaskModalStore>((set) => ({
-  selectedTask: null,
-  openTaskModal: (task) => set({ selectedTask: task }),
-  closeTaskModal: () => set({ selectedTask: null }),
+export const useModalStore = create<ModalState>((set) => ({
+  isOpen: false,
+  type: null,
+  data: null,
+  openModal: (type, data = undefined) => set({ isOpen: true, type, data }),
+  closeModal: () => set({ isOpen: false, type: null, data: null }),
 }));
