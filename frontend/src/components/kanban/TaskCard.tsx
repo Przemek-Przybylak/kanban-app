@@ -1,15 +1,16 @@
-import { useTaskModalStore } from "../../stores/useTaskModalStore";
+import { use } from "react";
 import { Task } from "../../types/task";
 import { StatusBadge } from "../modals/statusBadge";
+import { useModalStore } from "../../stores/useModalStore";
 
 export default function TaskCard({ task }: { task: Task }) {
   const { title, description, dueDate, project, status } = task;
-  const { openTaskModal } = useTaskModalStore();
+  const { openModal } = useModalStore();
 
   return (
     <div
       className="bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer"
-      onClick={() => openTaskModal(task)}
+      onClick={() => openModal("task", task)}
     >
       <h3 className="text-xl font-semibold mb-2">{title}</h3>
       <p className="text-gray-700 mb-3">{description}</p>
