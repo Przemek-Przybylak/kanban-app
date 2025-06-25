@@ -19,7 +19,7 @@ export const AddProjectModal = () => {
     });
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = () => {
     sendProject(newProject);
   };
 
