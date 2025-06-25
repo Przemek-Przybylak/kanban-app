@@ -3,12 +3,11 @@ import { ModalWrapper } from "./ModalsWrapper";
 import { Project } from "../../types/projects";
 import { useModalStore } from "../../stores/useModalStore";
 import { useProjectsStore } from "../../stores/useProjectsStore";
-import { set } from "react-hook-form";
 
 export const AddProjectModal = () => {
   const { type, closeModal } = useModalStore();
   const [newProject, setNewProject] = useState<Project>({} as Project);
-  const { sendProject, loading, error } = useProjectsStore();
+  const { sendProject } = useProjectsStore();
 
   if (type !== "project") return null;
   newProject as Project;

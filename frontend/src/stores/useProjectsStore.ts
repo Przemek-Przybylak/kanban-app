@@ -39,7 +39,7 @@ export const useProjectsStore = create<ProjectsStore>((set) => ({
   sendProject: async (project: Project) => {
     set({ loading: true, error: null });
     try {
-      const response = await postProject(project);
+      await postProject(project);
       // await fetch("/api/projects", {
       //   method: "POST",
       //   headers: {

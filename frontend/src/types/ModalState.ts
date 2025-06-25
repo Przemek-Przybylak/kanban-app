@@ -1,7 +1,7 @@
 import { Project } from "./projects";
 import { Task } from "./task";
 
-interface ModalState {
+export interface ModalState {
   isOpen: boolean;
   type: string | null;
   data: Project | Task | null;
