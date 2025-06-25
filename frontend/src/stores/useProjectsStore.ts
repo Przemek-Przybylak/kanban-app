@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { Project } from "../types/projects";
-import { fetchProject, fetchProjects } from "../lib/api";
+import { fetchProject, fetchProjects, postProject } from "../lib/api";
 
 interface ProjectsStore {
   project: Project | null;
@@ -39,13 +39,14 @@ export const useProjectsStore = create<ProjectsStore>((set) => ({
   sendProject: async (project: Project) => {
     set({ loading: true, error: null });
     try {
-      await fetch("/api/projects", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(project),
-      });
+      const response = await postProject(project);
+      // await fetch("/api/projects", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(project),
+      // });
       set((state) => ({
         projects: [...state.projects, project],
         loading: false,

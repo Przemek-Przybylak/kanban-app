@@ -15,7 +15,7 @@ export const fetchProject = async (id: number) => {
   return response.json();
 };
 
-export const sendProject = async (project: Project) => {
+export const postProject = async (project: Project) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/projects`, {
     method: "POST",
     headers: {
