@@ -10,7 +10,6 @@ export const AddProjectModal = () => {
   const { sendProject } = useProjectsStore();
 
   if (type !== "project") return null;
-  newProject as Project;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewProject({
@@ -19,17 +18,24 @@ export const AddProjectModal = () => {
     });
   };
 
-  const onSubmit = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     sendProject(newProject);
+    closeModal();
   };
 
   return (
     <ModalWrapper isOpen={true} onClose={closeModal}>
       <h2>Add project</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>Project title: </label>
-        <input onChange={handleChange} type="string"></input>
-        <button onSubmit={() => onSubmit}>Add</button>
+        <input
+          type="text"
+          value={newProject.title}
+          onChange={handleChange}
+          required
+        ></input>
+        <button type="submit">Add</button>
       </form>
     </ModalWrapper>
   );
