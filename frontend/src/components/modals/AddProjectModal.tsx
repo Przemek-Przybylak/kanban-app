@@ -2,21 +2,26 @@ import { useState } from "react";
 import { ModalWrapper } from "./ModalsWrapper";
 import { Project } from "../../types/projects";
 import { useModalStore } from "../../stores/useModalStore";
+import { useProjectsStore } from "../../stores/useProjectsStore";
+import { set } from "react-hook-form";
 
 export const AddProjectModal = () => {
-  const { data, type, closeModal } = useModalStore();
+  const { type, closeModal } = useModalStore();
   const [newProject, setNewProject] = useState<Project>({} as Project);
+  const { sendProject, loading, error } = useProjectsStore();
 
   if (type !== "project") return null;
   newProject as Project;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    newProject.title = e.target.value;
+    setNewProject({
+      ...newProject,
+      title: e.target.value,
+    });
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setNewProject(newProject);
+    sendProject(newProject);
   };
 
   return (
