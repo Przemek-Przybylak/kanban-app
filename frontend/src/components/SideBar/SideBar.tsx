@@ -10,12 +10,13 @@ export default function SideBar() {
   useEffect(() => {
     fetchProjects();
   }, [fetchProjects]);
+  console.log("projects", projects);
 
   return (
     <aside className=" bg-gray-200 m-4 flex-1 w-1/5 max-w-[250px] p-4 rounded-2xl">
       <h2 className="text-xl font-bold mb-4 ">Projects</h2>
       <StatusWrapper loading={loading} error={error}>
-        <ul>
+        <ul className="flex flex-col gap-2">
           {projects.map((project) => (
             <Link
               key={project.projectId}
