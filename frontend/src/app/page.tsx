@@ -1,3 +1,13 @@
+"use client";
+import { AddProjectModal } from "../components/modals/AddProjectModal";
+import { useModalStore } from "../stores/useModalStore";
+
 export default function Home() {
-  return <div className="">hello world</div>;
+  const { type, openModal } = useModalStore();
+  return (
+    <>
+      {type === "addProject" && <AddProjectModal />}
+      <button onClick={() => openModal("addProject")}>add project</button>
+    </>
+  );
 }
