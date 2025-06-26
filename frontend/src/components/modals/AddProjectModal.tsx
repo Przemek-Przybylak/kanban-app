@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { ModalWrapper } from "./ModalsWrapper";
 import { Project } from "../../types/projects";
@@ -5,11 +6,11 @@ import { useModalStore } from "../../stores/useModalStore";
 import { useProjectsStore } from "../../stores/useProjectsStore";
 
 export const AddProjectModal = () => {
-  const { type, closeModal } = useModalStore();
   const [newProject, setNewProject] = useState<Project>({} as Project);
+  const { type, closeModal } = useModalStore();
   const { sendProject } = useProjectsStore();
 
-  if (type !== "project") return null;
+  if (type !== "addProject") return null;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewProject({
