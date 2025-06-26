@@ -5,6 +5,6 @@ export const useModalStore = create<ModalState>((set) => ({
   isOpen: false,
   type: null,
   data: null,
-  openModal: (type, data = undefined) => set({ isOpen: true, type, data }),
+  openModal: (type, data) => set({ isOpen: true, type, data }),
   closeModal: () => set({ isOpen: false, type: null, data: null }),
 }));
