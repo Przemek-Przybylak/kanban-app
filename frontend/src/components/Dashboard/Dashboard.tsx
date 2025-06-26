@@ -9,11 +9,11 @@ type props = {
 };
 
 export default function Dashboard({ project }: props) {
-  const { data: selectedTask } = useModalStore();
+  const { type } = useModalStore();
 
   return (
     <div className="p-6 flex-3">
-      {selectedTask && <TaskModal />}
+      {type === "task" && <TaskModal />}
       <CanbanBoard tasks={project.tasks} />
     </div>
   );
