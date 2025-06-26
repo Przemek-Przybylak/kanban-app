@@ -17,8 +17,8 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    projectId: "1",
     title: "Learn coding",
+    projectId: "1",
     tasks: [
       {
         id: "1",
