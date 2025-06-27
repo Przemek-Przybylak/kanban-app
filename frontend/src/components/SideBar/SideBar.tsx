@@ -10,7 +10,6 @@ export default function SideBar() {
   useEffect(() => {
     fetchProjects();
   }, [fetchProjects]);
-  console.log("projects", projects);
 
   return (
     <aside className=" bg-gray-200 m-4 flex-1 w-1/5 max-w-[250px] p-4 rounded-2xl">
