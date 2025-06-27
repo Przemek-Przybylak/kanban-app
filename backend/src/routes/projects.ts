@@ -1,5 +1,6 @@
 import express from "express";
 import { Project, projects } from "../data/projects";
+import { v4 as uuidv4 } from "uuid";
 
 const projectsRouter = express.Router();
 
@@ -23,7 +24,7 @@ projectsRouter.post("/", (req, res) => {
     res.status(400).json({ error: "Name are required" });
     return;
   }
-
+  newProject.projectId = uuidv4();
   projects.push(newProject);
   res.status(201).json(newProject);
 });

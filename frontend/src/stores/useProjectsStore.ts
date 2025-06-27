@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { Project } from "../types/projects";
 import { fetchProject, fetchProjects, postProject } from "../lib/api";
-import { v4 as uuidv4 } from "uuid";
 
 interface ProjectsStore {
   project: Project | null;
@@ -39,7 +38,6 @@ export const useProjectsStore = create<ProjectsStore>((set) => ({
   },
   sendProject: async (project: Project) => {
     set({ loading: true, error: null });
-    project.projectId = uuidv4();
     try {
       await postProject(project);
       set((state) => ({
