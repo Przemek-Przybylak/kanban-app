@@ -5,8 +5,8 @@ import cors from "cors";
 const app = express();
 
 const allowedOrigins = [
-  "https://kanban-app-sage-eta.vercel.app", // frontend produkcyjny
-  "http://localhost:3000", // frontend lokalny
+  "https://kanban-app-sage-eta.vercel.app", // frontend production
+  "http://localhost:3000", // frontend local
 ];
 
 const corsOptions = {
