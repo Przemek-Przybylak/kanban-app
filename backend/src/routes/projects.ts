@@ -29,4 +29,16 @@ projectsRouter.post("/", (req, res) => {
   res.status(201).json(newProject);
 });
 
+projectsRouter.put("/:id", (req, res) => {
+  const id = req.params.id;
+  const updatedProject = req.body as Project;
+  const index = projects.findIndex((p) => p.projectId === id);
+  if (index >= 0) {
+    projects[index] = { ...projects[index], ...updatedProject };
+    res.status(200).json(projects[index]);
+  } else {
+    res.status(404).json({ error: "Project not found" });
+  }
+});
+
 export default projectsRouter;
