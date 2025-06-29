@@ -1,4 +1,5 @@
 import { Task } from "../../types/task";
+import Button from "../Button/Button";
 import TaskCard from "./TaskCard";
 
 export default function CanbanColumn({ tasks }: { tasks: Task[] }) {
@@ -10,6 +11,7 @@ export default function CanbanColumn({ tasks }: { tasks: Task[] }) {
       <h3 className="text-xl font-semibold mb-4 text-gray-700 border-b border-gray-300 pb-2">
         {formattedStatus}
       </h3>
+      <Button onClick={() => console.log("Add task clicked")}>Add Task</Button>
       <div className="flex flex-col gap-4 overflow-y-auto max-h-[70vh]">
         {tasks.length > 0 ? (
           tasks.map((task) => <TaskCard key={task.id} task={task} />)
