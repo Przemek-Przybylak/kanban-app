@@ -27,3 +27,19 @@ export const postProject = async (project: Project) => {
   if (!response.ok) throw new Error("Failed to add project");
   return response.json();
 };
+
+export const editProject = async (id: number, project: Project) => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/projects/${id}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(project),
+    }
+  );
+
+  if (!response.ok) throw new Error(`Failed to edit project with id ${id}`);
+  return response.json();
+};
