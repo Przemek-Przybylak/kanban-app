@@ -7,7 +7,7 @@ export async function fetchProjects() {
   return response.json();
 }
 
-export const fetchProject = async (id: number) => {
+export const fetchProject = async (id: string) => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/projects/${id}`
   );
@@ -28,7 +28,7 @@ export const postProject = async (project: Project) => {
   return response.json();
 };
 
-export const editProject = async (id: number, project: Project) => {
+export const putProject = async (id: string, project: Project) => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/projects/${id}`,
     {
@@ -39,6 +39,8 @@ export const editProject = async (id: number, project: Project) => {
       body: JSON.stringify(project),
     }
   );
+
+  await fetchProject(id);
 
   if (!response.ok) throw new Error(`Failed to edit project with id ${id}`);
   return response.json();
