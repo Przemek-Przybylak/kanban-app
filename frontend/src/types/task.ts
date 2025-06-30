@@ -6,5 +6,5 @@ export interface Task {
   project: string;
   status: string;
   assignees: string[];
-  approvedBy: string | null;
+  approvedBy: string | undefined;
 }
