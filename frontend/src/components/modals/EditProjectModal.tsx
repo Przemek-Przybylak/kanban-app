@@ -25,7 +25,7 @@ export default function EditProjectModal() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let newProject: Project = {
+    const newProject: Project = {
       ...project,
       tasks: [...project.tasks, newTask],
     };
