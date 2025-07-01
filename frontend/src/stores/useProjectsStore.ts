@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { Project } from "../types/projects";
 import {
+  deleteProject,
   fetchProject,
   fetchProjects,
   postProject,
@@ -16,6 +17,7 @@ interface ProjectsStore {
   fetchProject: (id: string) => Promise<void>;
   sendProject: (project: Project) => Promise<void>;
   updateProject: (id: string, project: Project) => Promise<void>;
+  deleteProject: (id: string) => Promise<void>;
 }
 
 export const useProjectsStore = create<ProjectsStore>((set) => ({
@@ -45,9 +47,9 @@ export const useProjectsStore = create<ProjectsStore>((set) => ({
   sendProject: async (project: Project) => {
     set({ loading: true, error: null });
     try {
-      await postProject(project);
+      const createdProject = await postProject(project); // 🟢 odbieramy projekt z backendu, który zawiera id
       set((state) => ({
-        projects: [...state.projects, project],
+        projects: [...state.projects, createdProject], // 🟢 dodajemy go z poprawnym id
         loading: false,
       }));
     } catch (error) {
@@ -60,6 +62,18 @@ export const useProjectsStore = create<ProjectsStore>((set) => ({
       await putProject(id, project);
       set((state) => ({
         projects: state.projects.map((p) => (p.projectId === id ? project : p)),
+        loading: false,
+      }));
+    } catch (error) {
+      set({ error: (error as Error).message, loading: false });
+    }
+  },
+  deleteProject: async (id: string) => {
+    set({ loading: true, error: null });
+    try {
+      await deleteProject(id);
+      set((state) => ({
+        projects: state.projects.filter((p) => p.projectId !== id),
         loading: false,
       }));
     } catch (error) {

@@ -24,6 +24,8 @@ export const postProject = async (project: Project) => {
     body: JSON.stringify(project),
   });
 
+  await fetchProjects();
+
   if (!response.ok) throw new Error("Failed to add project");
   return response.json();
 };
@@ -44,4 +46,18 @@ export const putProject = async (id: string, project: Project) => {
 
   if (!response.ok) throw new Error(`Failed to edit project with id ${id}`);
   return response.json();
+};
+
+export const deleteProject = async (id: string) => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/projects/${id}`,
+    {
+      method: "DELETE",
+    }
+  );
+
+  await fetchProjects();
+
+  if (!response.ok) throw new Error(`Failed to delete project with id ${id}`);
+  return response.status === 204;
 };

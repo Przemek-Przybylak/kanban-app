@@ -9,6 +9,7 @@ import { useModalStore } from "../../stores/useModalStore";
 export default function SideBar() {
   const { fetchProjects, projects, loading, error } = useProjectsStore();
   const { openModal } = useModalStore();
+  const { deleteProject } = useProjectsStore();
 
   useEffect(() => {
     fetchProjects();
@@ -21,13 +22,18 @@ export default function SideBar() {
       <StatusWrapper loading={loading} error={error}>
         <ul className="flex flex-col gap-2">
           {projects.map((project) => (
-            <Link
-              key={project.projectId}
-              className="mb-2"
-              href={`/project/${project.projectId}`}
-            >
-              {project.title}
-            </Link>
+            <>
+              <Link
+                key={project.projectId}
+                className="mb-2"
+                href={`/project/${project.projectId}`}
+              >
+                {project.title}
+              </Link>
+              <Button onClick={() => deleteProject(project.projectId)}>
+                Remove
+              </Button>
+            </>
           ))}
         </ul>
       </StatusWrapper>

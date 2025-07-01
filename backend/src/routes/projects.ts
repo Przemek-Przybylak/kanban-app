@@ -41,4 +41,15 @@ projectsRouter.put("/:id", (req, res) => {
   }
 });
 
+projectsRouter.delete("/:id", (req, res) => {
+  const id = req.params.id;
+  const index = projects.findIndex((p) => p.projectId === id);
+  if (index >= 0) {
+    projects.splice(index, 1);
+    res.status(204).send();
+  } else {
+    res.status(404).json({ error: "Project not found" });
+  }
+});
+
 export default projectsRouter;
