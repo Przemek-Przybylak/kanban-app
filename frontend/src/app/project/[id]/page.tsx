@@ -10,7 +10,7 @@ import EditProjectModal from "../../../components/modals/EditProjectModal";
 import { useModalStore } from "../../../stores/useModalStore";
 
 export default function ProjectPage() {
-  const { type, openModal } = useModalStore();
+  const { type } = useModalStore();
   const { fetchProject, project, loading, error } = useProjectsStore();
   const { id } = useParams();
 
