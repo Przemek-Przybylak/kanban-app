@@ -71,7 +71,7 @@ export default function EditProjectModal() {
           onChange={(e) => setTask({ ...newTask, status: e.target.value })}
         >
           <option value="todo">To Do</option>
-          <option value="in-progress">In Progress</option>
+          <option value="in_progress">In Progress</option>
           <option value="review">Review</option>
           <option value="done">Done</option>
         </select>
