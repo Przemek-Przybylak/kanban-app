@@ -64,7 +64,7 @@ export const useProjectsStore = create<ProjectsStore>((set) => ({
         projects: state.projects.map((p) =>
           p.projectId === id ? updatedProject : p
         ),
-        project: updatedProject, // 🟢 aktualizujemy również aktualnie wybrany projekt
+        project: updatedProject,
         loading: false,
       }));
     } catch (error) {
