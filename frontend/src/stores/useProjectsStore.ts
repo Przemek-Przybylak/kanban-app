@@ -47,9 +47,9 @@ export const useProjectsStore = create<ProjectsStore>((set) => ({
   sendProject: async (project: Project) => {
     set({ loading: true, error: null });
     try {
-      const createdProject = await postProject(project); // 🟢 odbieramy projekt z backendu, który zawiera id
+      const createdProject = await postProject(project);
       set((state) => ({
-        projects: [...state.projects, createdProject], // 🟢 dodajemy go z poprawnym id
+        projects: [...state.projects, createdProject],
         loading: false,
       }));
     } catch (error) {
@@ -59,9 +59,12 @@ export const useProjectsStore = create<ProjectsStore>((set) => ({
   updateProject: async (id: string, project: Project) => {
     set({ loading: true, error: null });
     try {
-      await putProject(id, project);
+      const updatedProject = await putProject(id, project);
       set((state) => ({
-        projects: state.projects.map((p) => (p.projectId === id ? project : p)),
+        projects: state.projects.map((p) =>
+          p.projectId === id ? updatedProject : p
+        ),
+        project: updatedProject, // 🟢 aktualizujemy również aktualnie wybrany projekt
         loading: false,
       }));
     } catch (error) {
