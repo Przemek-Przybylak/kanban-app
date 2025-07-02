@@ -30,11 +30,13 @@ projectsRouter.post("/", (req, res) => {
 });
 
 projectsRouter.put("/:id", (req, res) => {
+  console.log("PUT /projects/:id - BODY:", req.body); //
   const id = req.params.id;
   const updatedProject = req.body as Project;
   const index = projects.findIndex((p) => p.projectId === id);
   if (index >= 0) {
     projects[index] = { ...projects[index], ...updatedProject };
+    console.log("Backend wysyła:", projects[index]);
     res.status(200).json(projects[index]);
   } else {
     res.status(404).json({ error: "Project not found" });
