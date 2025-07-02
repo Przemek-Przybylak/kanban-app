@@ -15,12 +15,7 @@ export default function ProjectPage() {
   const { id } = useParams();
 
   useEffect(() => {
-    if (id) {
-      const numericId = String(id);
-      if (!isNaN(Number(numericId))) {
-        fetchProject(numericId);
-      }
-    }
+    fetchProject(id as string);
   }, [id, fetchProject]);
 
   return (
