@@ -1,6 +1,14 @@
 import { Task } from "../data/tasks";
 import * as taskService from "../services/taskService";
 
+export async function getTasksByProjectIdController({
+  projectId,
+}: {
+  projectId: string;
+}) {
+  return await taskService.getTasksByProjectId({ projectId });
+}
+
 export async function createTaskController({ addedTask }: { addedTask: Task }) {
   return await taskService.addTask({ addedTask });
 }
