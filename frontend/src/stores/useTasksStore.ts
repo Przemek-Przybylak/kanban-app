@@ -1,0 +1,89 @@
+import { create } from "zustand";
+import { Task } from "../types/task";
+import {
+  deleteTask,
+  fetchTasksByProjectId,
+  fetchTask,
+  postTask,
+  putTask,
+} from "../lib/api";
+
+interface TasksStore {
+  tasks: Task[];
+  task: Task | null;
+  loading: boolean;
+  error: string | null;
+  fetchTasksByProjectId: (projectId: string) => Promise<void>;
+  fetchTask: (projectId: string, taskId: string) => Promise<void>;
+  addTask: (addedTask: Task) => Promise<void>;
+  deleteTask: (taskId: string) => Promise<void>;
+  editTask: (taskId: string, newData: Partial<Task>) => Promise<void>;
+}
+
+export const useTasksStore = create<TasksStore>((set) => ({
+  tasks: [],
+  task: null,
+  loading: false,
+  error: null,
+  fetchTasksByProjectId: async (projectId: string) => {
+    set({ loading: true, error: null });
+    try {
+      const tasks = await fetchTasksByProjectId(projectId);
+      set({ tasks });
+    } catch (error) {
+      set({ error: (error as Error).message });
+    } finally {
+      set({ loading: false });
+    }
+  },
+  fetchTask: async (taskId: string) => {
+    set({ loading: true, error: null });
+    try {
+      const task = await fetchTask(taskId);
+      set({ task });
+    } catch (error) {
+      set({ error: (error as Error).message });
+    } finally {
+      set({ loading: false });
+    }
+  },
+  addTask: async (addedTask: Task) => {
+    set({ loading: true, error: null });
+    try {
+      const task = await postTask(addedTask);
+      set((state) => ({ tasks: [...state.tasks, task] }));
+    } catch (error) {
+      set({ error: (error as Error).message });
+    } finally {
+      set({ loading: false });
+    }
+  },
+  deleteTask: async (taskId: string) => {
+    set({ loading: true, error: null });
+    try {
+      await deleteTask(taskId);
+      set((state) => ({
+        tasks: state.tasks.filter((task) => task.id !== taskId),
+      }));
+    } catch (error) {
+      set({ error: (error as Error).message });
+    } finally {
+      set({ loading: false });
+    }
+  },
+  editTask: async (taskId: string, newData: Partial<Task>) => {
+    set({ loading: true, error: null });
+    try {
+      const updatedTask = await putTask(taskId, newData);
+      set((state) => ({
+        tasks: state.tasks.map((task) =>
+          task.id === taskId ? updatedTask : task
+        ),
+      }));
+    } catch (error) {
+      set({ error: (error as Error).message });
+    } finally {
+      set({ loading: false });
+    }
+  },
+}));
