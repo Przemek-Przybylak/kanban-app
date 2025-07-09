@@ -40,7 +40,8 @@ export const putProject = async (id: string, project: Project) => {
     }
   );
 
-  if (!response.ok) throw new Error(`Failed to edit project with id ${id}`);
+  if (!response.ok)
+    throw new Error(`Failed to edit project with id ${id}, ${project}`);
   return response.json();
 };
 
@@ -57,3 +58,61 @@ export const deleteProject = async (id: string) => {
   if (!response.ok) throw new Error(`Failed to delete project with id ${id}`);
   return response.status === 204;
 };
+
+export async function fetchTasksByProjectId(projectId: string) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/tasks/${projectId}`
+  );
+  if (!response.ok) throw new Error("Failed to fetch tasks");
+  return response.json();
+}
+
+export async function fetchTask(taskId: string) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/tasks/${taskId}`
+  );
+  if (!response.ok) throw new Error("Failed to fetch task");
+  return response.json();
+}
+
+export async function postTask(addedTask: any) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tasks`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ addedTask }),
+  });
+
+  if (!response.ok) throw new Error("Failed to add task");
+  return response.json();
+}
+
+export async function deleteTask(taskId: string) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/tasks/${taskId}`,
+    {
+      method: "DELETE",
+    }
+  );
+
+  if (!response.ok) throw new Error(`Failed to delete task with id ${taskId}`);
+  return response.status === 204;
+}
+
+export async function putTask(taskId: string, newData: any) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/tasks/${taskId}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newData),
+    }
+  );
+
+  if (!response.ok)
+    throw new Error(`Failed to edit task with id ${taskId}, ${newData}`);
+  return response.json();
+}
