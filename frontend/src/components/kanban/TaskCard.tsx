@@ -3,7 +3,7 @@ import { StatusBadge } from "../modals/statusBadge";
 import { useModalStore } from "../../stores/useModalStore";
 
 export default function TaskCard({ task }: { task: Task }) {
-  const { title, description, dueDate, project, status } = task;
+  const { title, description, dueDate, project, status, id } = task;
   const { openModal } = useModalStore();
 
   return (
