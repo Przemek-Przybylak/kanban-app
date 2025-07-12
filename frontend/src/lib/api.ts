@@ -61,7 +61,7 @@ export const deleteProject = async (id: string) => {
 
 export async function fetchTasksByProjectId(projectId: string) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/tasks/${projectId}`
+    `${process.env.NEXT_PUBLIC_API_URL}/projects/${projectId}`
   );
   if (!response.ok) throw new Error("Failed to fetch tasks");
   return response.json();
