@@ -22,18 +22,14 @@ export default function SideBar() {
       <StatusWrapper loading={loading} error={error}>
         <ul className="flex flex-col gap-2">
           {projects.map((project) => (
-            <>
-              <Link
-                key={project.projectId}
-                className="mb-2"
-                href={`/project/${project.projectId}`}
-              >
+            <li key={project.projectId}>
+              <Link className="mb-2" href={`/project/${project.projectId}`}>
                 {project.title}
               </Link>
               <Button onClick={() => deleteProject(project.projectId)}>
                 Remove
               </Button>
-            </>
+            </li>
           ))}
         </ul>
       </StatusWrapper>
