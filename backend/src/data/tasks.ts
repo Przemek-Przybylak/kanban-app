@@ -1,5 +1,6 @@
 export interface Task {
   taskId: string;
+  projectId: string;
   title: string;
   description: string;
   dueDate: string;
@@ -12,6 +13,7 @@ export interface Task {
 export const tasks: Task[] = [
   {
     taskId: "1",
+    projectId: "1",
     title: "Zaprojektować UI strony głównej",
     description: "Layout i elementy wizualne",
     dueDate: "2025-06-01",
@@ -22,6 +24,7 @@ export const tasks: Task[] = [
   },
   {
     taskId: "2",
+    projectId: "1",
     title: "Zaimplementować backend API",
     description: "Endpointy do zadań",
     dueDate: "2025-06-10",
@@ -32,6 +35,7 @@ export const tasks: Task[] = [
   },
   {
     taskId: "3",
+    projectId: "1",
     title: "Dodanie responsywności do UI",
     description: "Media queries, testy mobilne",
     dueDate: "2025-06-12",
@@ -42,6 +46,7 @@ export const tasks: Task[] = [
   },
   {
     taskId: "4",
+    projectId: "1",
     title: "Testy jednostkowe komponentów",
     description: "RTL, Jest",
     dueDate: "2025-06-08",
@@ -52,6 +57,7 @@ export const tasks: Task[] = [
   },
   {
     taskId: "5",
+    projectId: "1",
     title: "Deploy na Vercel",
     description: "Pierwsze wypchnięcie projektu",
     dueDate: "2025-06-15",
@@ -62,6 +68,7 @@ export const tasks: Task[] = [
   },
   {
     taskId: "6",
+    projectId: "1",
     title: "Setup bazy danych",
     description: "MongoDB Atlas",
     dueDate: "2025-06-05",
@@ -72,6 +79,7 @@ export const tasks: Task[] = [
   },
   {
     taskId: "7",
+    projectId: "1",
     title: "Konfiguracja ESLint i Prettier",
     description: "Lintowanie i formatowanie kodu",
     dueDate: "2025-06-02",
@@ -82,6 +90,7 @@ export const tasks: Task[] = [
   },
   {
     taskId: "8",
+    projectId: "1",
     title: "Zarządzanie stanem w aplikacji",
     description: "React Context / Zustand",
     dueDate: "2025-06-07",
@@ -92,6 +101,7 @@ export const tasks: Task[] = [
   },
   {
     taskId: "9",
+    projectId: "1",
     title: "Obsługa błędów",
     description: "Zabezpieczenie API",
     dueDate: "2025-06-11",
@@ -102,6 +112,7 @@ export const tasks: Task[] = [
   },
   {
     taskId: "10",
+    projectId: "1",
     title: "Dodanie logowania",
     description: "Prosty auth (mock)",
     dueDate: "2025-06-09",
