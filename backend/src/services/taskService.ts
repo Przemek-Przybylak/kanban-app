@@ -1,4 +1,3 @@
-import { projects } from "../data/projects";
 import { Task, tasks } from "../data/tasks";
 
 export async function getTasksByProjectId({

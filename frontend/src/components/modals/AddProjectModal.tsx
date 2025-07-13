@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import { ModalWrapper } from "./ModalsWrapper";
 import { Project } from "../../types/projects";

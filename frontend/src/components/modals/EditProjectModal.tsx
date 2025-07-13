@@ -8,6 +8,7 @@ import { Task } from "../../types/task";
 export default function EditProjectModal() {
   const [newTask, setTask] = useState<Task>({
     id: "",
+    projectId: "",
     title: "",
     description: "",
     dueDate: "",
@@ -27,7 +28,7 @@ export default function EditProjectModal() {
     e.preventDefault();
     const newProject: Project = {
       ...project,
-      tasks: [...project.tasks, newTask],
+      // tasks: [...project.tasks, newTask],
     };
     updateProject(project.projectId, newProject);
     closeModal();

@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect } from "react";
 import { useProjectsStore } from "../../stores/useProjectsStore";
 import Link from "next/link";
@@ -20,9 +21,9 @@ export default function SideBar() {
       <h2 className="text-xl font-bold mb-4 ">Projects</h2>
       <Button onClick={() => openModal("addProject")}>Add Project</Button>
       <StatusWrapper loading={loading} error={error}>
-        <ul className="flex flex-col gap-2">
+        <ul>
           {projects.map((project) => (
-            <li key={project.projectId}>
+            <li key={project.projectId} className="flex flex-col gap-2">
               <Link className="mb-2" href={`/project/${project.projectId}`}>
                 {project.title}
               </Link>

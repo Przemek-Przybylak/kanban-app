@@ -1,4 +1,5 @@
 "use client";
+
 import CanbanBoard from "../../components/kanban/CanbanBoard";
 import TaskModal from "../../components/modals/TaskModal";
 import { useModalStore } from "../../stores/useModalStore";

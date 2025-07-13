@@ -25,6 +25,7 @@ export const useTasksStore = create<TasksStore>((set) => ({
   task: null,
   loading: false,
   error: null,
+
   fetchTasksByProjectId: async (projectId: string) => {
     set({ loading: true, error: null });
     try {
