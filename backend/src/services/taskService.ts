@@ -1,13 +1,20 @@
+import { projects } from "../data/projects";
 import { Task, tasks } from "../data/tasks";
 
-export async function getTasksById({ projectId }: { projectId: string }) {
-  const filteredTasks = tasks.filter((t) => t.project === projectId);
+export async function getTasksByProjectId({
+  projectId,
+}: {
+  projectId: string;
+}) {
+  const filteredTasks = tasks.filter((t) => t.projectId === projectId);
+  console.log("Filtered tasks:", filteredTasks);
   return filteredTasks;
 }
 
 export async function addTask({ addedTask }: { addedTask: Task }) {
   const newTask = {
     taskId: (tasks.length + 1).toString(),
+    projectId: addedTask.projectId,
     title: addedTask.title,
     description: addedTask.description,
     dueDate: addedTask.dueDate,
