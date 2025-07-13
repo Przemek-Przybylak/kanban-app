@@ -1,5 +1,4 @@
 import express from "express";
-import { Task, tasks } from "../data/tasks";
 import * as taskController from "../controllers/tasksController";
 
 const tasksRouter = express.Router();
