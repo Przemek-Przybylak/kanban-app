@@ -1,6 +1,7 @@
 import express from "express";
 import projectsRouter from "./routes/projects";
 import cors from "cors";
+import tasksRouter from "./routes/tasks";
 
 const app = express();
 
@@ -23,6 +24,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/api/projects", projectsRouter);
+app.use("/api/tasks", tasksRouter);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
