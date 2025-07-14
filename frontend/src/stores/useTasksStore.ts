@@ -20,7 +20,7 @@ interface TasksStore {
   editTask: (taskId: string, newData: Partial<Task>) => Promise<void>;
 }
 
-export const useTasksStore = create<TasksStore>((set) => ({
+export const useTasksStore = create<TasksStore>((set, get) => ({
   tasks: [],
   task: null,
   loading: false,
@@ -75,7 +75,13 @@ export const useTasksStore = create<TasksStore>((set) => ({
   editTask: async (taskId: string, newData: Partial<Task>) => {
     set({ loading: true, error: null });
     try {
-      const updatedTask = await putTask(taskId, newData);
+      // Find the existing task to merge with newData
+      const existingTask = get().tasks.find((task) => task.id === taskId);
+      if (!existingTask) throw new Error("Task not found");
+      const updatedTask = await putTask(taskId, {
+        ...existingTask,
+        ...newData,
+      });
       set((state) => ({
         tasks: state.tasks.map((task) =>
           task.id === taskId ? updatedTask : task
