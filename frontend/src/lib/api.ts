@@ -1,4 +1,5 @@
 import { Project } from "../types/projects";
+import { Task } from "../types/task";
 
 export async function fetchProjects() {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/projects`);
@@ -75,7 +76,7 @@ export async function fetchTask(taskId: string) {
   return response.json();
 }
 
-export async function postTask(addedTask: any) {
+export async function postTask(addedTask: Task) {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tasks`, {
     method: "POST",
     headers: {
@@ -100,7 +101,7 @@ export async function deleteTask(taskId: string) {
   return response.status === 204;
 }
 
-export async function putTask(taskId: string, newData: any) {
+export async function putTask(taskId: string, newData: Task) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/tasks/${taskId}`,
     {
