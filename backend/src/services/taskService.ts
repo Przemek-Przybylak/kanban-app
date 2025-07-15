@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import { Task, tasks } from "../data/tasks";
 
 export async function getTasksByProjectId({
@@ -12,7 +13,7 @@ export async function getTasksByProjectId({
 
 export async function addTask({ addedTask }: { addedTask: Task }) {
   const newTask = {
-    taskId: (tasks.length + 1).toString(),
+    taskId: uuidv4(),
     projectId: addedTask.projectId,
     title: addedTask.title,
     description: addedTask.description,
