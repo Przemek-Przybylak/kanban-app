@@ -1,5 +1,5 @@
 export interface Task {
-  id: string;
+  taskId: string;
   projectId: string;
   title: string;
   description: string;
