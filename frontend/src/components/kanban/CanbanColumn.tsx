@@ -13,7 +13,7 @@ export default function CanbanColumn({ tasks }: { tasks: Task[] }) {
       <h3 className="text-xl font-semibold mb-4 text-gray-700 border-b border-gray-300 pb-2">
         {formattedStatus}
       </h3>
-      <Button onClick={() => openModal("editProject")}>Add Task</Button>
+      <Button onClick={() => openModal("addTask")}>Add Task</Button>
       <div className="flex flex-col gap-4 overflow-y-auto max-h-[70vh]">
         {tasks.length > 0 ? (
           tasks.map((task) => <TaskCard key={task.id} task={task} />)

@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import StatusWrapper from "../../../components/StatusWrapper/StatusWrapper";
 import Dashboard from "../../../components/Dashboard/Dashboard";
 import { AddProjectModal } from "../../../components/modals/AddProjectModal";
-import EditProjectModal from "../../../components/modals/EditProjectModal";
+import AddTaskModal from "../../../components/modals/AddTaskModal";
 import { useModalStore } from "../../../stores/useModalStore";
 import { useTasksStore } from "../../../stores/useTasksStore";
 
@@ -22,7 +22,7 @@ export default function ProjectPage() {
     <>
       <StatusWrapper loading={loading} error={error}>
         {type === "addProject" && <AddProjectModal />}
-        {type === "editProject" && <EditProjectModal />}
+        {type === "addTask" && <AddTaskModal />}
         {tasks && <Dashboard tasks={tasks} />}
       </StatusWrapper>
     </>

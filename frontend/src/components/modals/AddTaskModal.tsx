@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useModalStore } from "../../stores/useModalStore";
 import { ModalWrapper } from "./ModalsWrapper";
-import { Project } from "../../types/projects";
-import { useProjectsStore } from "../../stores/useProjectsStore";
 import { Task } from "../../types/task";
+import { useTasksStore } from "../../stores/useTasksStore";
 
-export default function EditProjectModal() {
+export default function AddTaskModal() {
   const [newTask, setTask] = useState<Task>({
     id: "",
     projectId: "",
@@ -19,18 +18,11 @@ export default function EditProjectModal() {
   });
   const [assigneeInput, setAssigneeInput] = useState("");
   const { type, closeModal } = useModalStore();
-  const { updateProject } = useProjectsStore();
-  const { project } = useProjectsStore(); // Ensure id is a string
-
-  if (!project) return null;
+  const { addTask } = useTasksStore();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const newProject: Project = {
-      ...project,
-      // tasks: [...project.tasks, newTask],
-    };
-    updateProject(project.projectId, newProject);
+    addTask(newTask);
     closeModal();
   };
 
@@ -44,10 +36,10 @@ export default function EditProjectModal() {
     }
   };
 
-  if (type !== "editProject") return null;
+  if (type !== "addTask") return null;
   return (
     <ModalWrapper isOpen={true} onClose={closeModal}>
-      <h2>Edit Project</h2>
+      <h2>Add Task</h2>
       <form onSubmit={handleSubmit}>
         <label>Task title</label>
         <input
