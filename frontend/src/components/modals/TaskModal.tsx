@@ -2,13 +2,18 @@ import { StatusBadge } from "./statusBadge";
 import { ModalWrapper } from "./ModalsWrapper";
 import { useModalStore } from "../../stores/useModalStore";
 import { Task } from "../../types/task";
+import Button from "../Button/Button";
+import { useTasksStore } from "../../stores/useTasksStore";
+import { fetchTask } from "../../lib/api";
 
 export default function TaskModal() {
   const { data, type, closeModal } = useModalStore();
+  const { deleteTask } = useTasksStore();
 
   if (type !== "task") return null;
   const task = data as Task;
   const {
+    taskId,
     title,
     project,
     dueDate,
@@ -55,6 +60,15 @@ export default function TaskModal() {
       ) : (
         <p className="text-sm text-yellow-600">⏳ Oczekuje na zatwierdzenie</p>
       )}
+      <Button
+        onClick={() => {
+          deleteTask(taskId);
+          closeModal();
+        }}
+        className="ml-2"
+      >
+        Delete Task
+      </Button>
     </ModalWrapper>
   );
 }

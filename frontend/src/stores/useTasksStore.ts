@@ -53,6 +53,7 @@ export const useTasksStore = create<TasksStore>((set, get) => ({
     try {
       const task = await postTask(addedTask);
       set((state) => ({ tasks: [...state.tasks, task] }));
+      console.log("Odpowiedź z backendu:", task);
     } catch (error) {
       set({ error: (error as Error).message });
     } finally {
@@ -64,7 +65,7 @@ export const useTasksStore = create<TasksStore>((set, get) => ({
     try {
       await deleteTask(taskId);
       set((state) => ({
-        tasks: state.tasks.filter((task) => task.id !== taskId),
+        tasks: state.tasks.filter((task) => task.taskId !== taskId),
       }));
     } catch (error) {
       set({ error: (error as Error).message });
@@ -76,7 +77,7 @@ export const useTasksStore = create<TasksStore>((set, get) => ({
     set({ loading: true, error: null });
     try {
       // Find the existing task to merge with newData
-      const existingTask = get().tasks.find((task) => task.id === taskId);
+      const existingTask = get().tasks.find((task) => task.taskId === taskId);
       if (!existingTask) throw new Error("Task not found");
       const updatedTask = await putTask(taskId, {
         ...existingTask,
@@ -84,7 +85,7 @@ export const useTasksStore = create<TasksStore>((set, get) => ({
       });
       set((state) => ({
         tasks: state.tasks.map((task) =>
-          task.id === taskId ? updatedTask : task
+          task.taskId === taskId ? updatedTask : task
         ),
       }));
     } catch (error) {
