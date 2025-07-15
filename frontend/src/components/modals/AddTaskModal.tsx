@@ -6,7 +6,7 @@ import { useTasksStore } from "../../stores/useTasksStore";
 
 export default function AddTaskModal() {
   const [newTask, setTask] = useState<Task>({
-    id: "",
+    taskId: "",
     projectId: "",
     title: "",
     description: "",
