@@ -4,7 +4,6 @@ import { useModalStore } from "../../stores/useModalStore";
 import { Task } from "../../types/task";
 import Button from "../Button/Button";
 import { useTasksStore } from "../../stores/useTasksStore";
-import { fetchTask } from "../../lib/api";
 
 export default function TaskModal() {
   const { data, type, closeModal } = useModalStore();
