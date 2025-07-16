@@ -18,7 +18,7 @@ export default function CanbanColumn({ tasks }: { tasks: Task[] }) {
         {tasks.length > 0 ? (
           tasks.map((task) => <TaskCard key={task.taskId} task={task} />)
         ) : (
-          <p className="text-gray-500 italic">Brak zadań w tej kolumnie</p>
+          <p className="text-gray-500 italic">No tasks for this column</p>
         )}
       </div>
     </div>

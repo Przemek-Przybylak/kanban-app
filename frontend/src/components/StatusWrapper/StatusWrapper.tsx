@@ -14,7 +14,7 @@ export default function StatusWrapper({ loading, error, children }: Props) {
         <div className="flex flex-col items-center gap-3 bg-white shadow-md rounded-xl px-6 py-5 border border-gray-200">
           <Loader2 className="h-8 w-8 text-blue-500 animate-spin" />
           <p className="text-gray-700 font-medium text-sm">
-            Ładowanie danych...
+            Loading... ( first load may take a while )
           </p>
         </div>
       </div>

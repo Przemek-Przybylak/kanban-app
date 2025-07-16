@@ -76,7 +76,7 @@ export default function AddTaskModal() {
             onChange={(e) => setAssigneeInput(e.target.value)}
           />
           <button type="button" onClick={handleAddAssignee}>
-            Dodaj
+            Add
           </button>
         </div>
         <ul>
