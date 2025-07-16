@@ -26,10 +26,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable}  h-screen overflow-hidden bg-gray-50 text-gray-900 font-sans flex w-full flex-row text-center`}
+        className={`${geistSans.variable} ${geistMono.variable} h-screen bg-gray-50 text-gray-900 font-sans flex flex-col lg:flex-row overflow-hidden`}
       >
         <SideBar />
-        {children}
+        <main className="flex-1 overflow-y-auto">{children}</main>
       </body>
     </html>
   );
