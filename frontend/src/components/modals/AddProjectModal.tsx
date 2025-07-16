@@ -5,6 +5,7 @@ import { ModalWrapper } from "./ModalsWrapper";
 import { Project } from "../../types/projects";
 import { useModalStore } from "../../stores/useModalStore";
 import { useProjectsStore } from "../../stores/useProjectsStore";
+import Input from "../Input/Input";
 
 export const AddProjectModal = () => {
   const [newProject, setNewProject] = useState<Project>({} as Project);
@@ -28,16 +29,22 @@ export const AddProjectModal = () => {
 
   return (
     <ModalWrapper isOpen={true} onClose={closeModal}>
-      <h2>Add project</h2>
+      <h2 className="py-4 uppercase bold">Add project</h2>
       <form onSubmit={handleSubmit}>
-        <label>Project title: </label>
-        <input
+        <Input
+          label="Project title"
           type="text"
           value={newProject.title}
           onChange={handleChange}
-          required
-        ></input>
-        <button type="submit">Add</button>
+          required={true}
+          placeholder="Enter project title"
+        />
+        <button
+          className="border-[1px] border-gray-800 rounded p-2 hover:opacity-70"
+          type="submit"
+        >
+          Add
+        </button>
       </form>
     </ModalWrapper>
   );
