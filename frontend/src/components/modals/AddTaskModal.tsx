@@ -92,7 +92,10 @@ export default function AddTaskModal() {
               className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               value={newTask.status}
               onChange={(e) =>
-                setTask({ ...newTask, status: e.target.value as any })
+                setTask({
+                  ...newTask,
+                  status: e.target.value as Task["status"],
+                })
               }
             >
               <option value="todo">To Do</option>
