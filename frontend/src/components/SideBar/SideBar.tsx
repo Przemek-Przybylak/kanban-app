@@ -28,7 +28,6 @@ export default function SideBar() {
         {isMobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
       </button>
 
-      {/* Sidebar */}
       <aside
         className={`
           bg-gray-200 rounded-2xl
