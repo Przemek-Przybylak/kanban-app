@@ -112,7 +112,7 @@ export default function AddTaskModal() {
             <button
               type="button"
               onClick={handleAddAssignee}
-              className="self-start bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
+              className="self-center bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
             >
               Add
             </button>
