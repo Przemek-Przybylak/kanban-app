@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -23,9 +19,7 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./frontend/src/*"
-      ]
+      "@/*": ["./frontend/src/*"]
     }
   },
   "include": [
@@ -33,9 +27,10 @@
     "**/*.tsx",
     "frontend/.next/types/**/*.ts",
     "frontend/next-env.d.ts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "../types/columns.tsx",
+    "../types/projects.ts",
+    "../types/task.ts"
   ],
-  "exclude": [
-    "frontend/node_modules"
-  ]
+  "exclude": ["frontend/node_modules"]
 }
