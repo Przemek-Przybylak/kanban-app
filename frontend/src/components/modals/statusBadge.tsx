@@ -1,4 +1,4 @@
-import { Task } from "../../types/task";
+import { Task } from "../../../../types/task";
 
 const statusClasses: Record<Task["status"], string> = {
   todo: "bg-gray-200 text-gray-800",

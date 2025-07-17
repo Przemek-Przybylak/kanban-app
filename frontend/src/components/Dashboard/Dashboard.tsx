@@ -3,7 +3,7 @@
 import CanbanBoard from "../../components/kanban/CanbanBoard";
 import TaskModal from "../../components/modals/TaskModal";
 import { useModalStore } from "../../stores/useModalStore";
-import { Task } from "../../types/task";
+import { Task } from "../../../../types/task";
 
 type Props = {
   tasks: Task[];

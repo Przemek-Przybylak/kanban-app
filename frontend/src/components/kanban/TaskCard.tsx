@@ -1,4 +1,4 @@
-import { Task } from "../../types/task";
+import { Task } from "../../../../types/task";
 import { StatusBadge } from "../modals/statusBadge";
 import { useModalStore } from "../../stores/useModalStore";
 

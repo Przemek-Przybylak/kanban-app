@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Project } from "../types/projects";
+import { Project } from "../../../types/projects";
 import {
   deleteProject,
   fetchProject,

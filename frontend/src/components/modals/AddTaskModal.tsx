@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useModalStore } from "../../stores/useModalStore";
 import { ModalWrapper } from "./ModalsWrapper";
-import { Task } from "../../types/task";
+import { Task } from "../../../../types/task";
 import { useTasksStore } from "../../stores/useTasksStore";
 import Input from "../Input/Input";
 

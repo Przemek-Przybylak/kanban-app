@@ -1,5 +1,5 @@
 import { useModalStore } from "../../stores/useModalStore";
-import { Task } from "../../types/task";
+import { Task } from "../../../../types/task";
 import Button from "../Button/Button";
 import TaskCard from "./TaskCard";
 

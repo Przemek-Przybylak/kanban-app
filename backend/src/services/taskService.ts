@@ -1,5 +1,7 @@
-import { v4 as uuidv4 } from "uuid";
-import { Task, tasks } from "../data/tasks";
+import { PrismaClient } from "@prisma/client";
+import { Task } from "../types/task";
+
+const prisma = new PrismaClient();
 
 export async function getTasksByProjectId({
   projectId,

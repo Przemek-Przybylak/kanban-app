@@ -1,7 +1,7 @@
 import { StatusBadge } from "./statusBadge";
 import { ModalWrapper } from "./ModalsWrapper";
 import { useModalStore } from "../../stores/useModalStore";
-import { Task } from "../../types/task";
+import { Task } from "../../../../types/task";
 import Button from "../Button/Button";
 import { useTasksStore } from "../../stores/useTasksStore";
 
