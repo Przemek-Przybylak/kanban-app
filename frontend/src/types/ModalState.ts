@@ -1,5 +1,5 @@
-import { Project } from "../../../types/projects";
-import { Task } from "../../../types/task";
+import { Project } from "./projects";
+import { Task } from "./task";
 
 export interface ModalState {
   isOpen: boolean;
