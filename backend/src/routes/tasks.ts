@@ -4,16 +4,20 @@ import * as taskController from "../controllers/tasksController";
 const tasksRouter = express.Router();
 
 tasksRouter.get("/:projectId", async (req, res) => {
-  const { projectId } = req.params;
+  const projectId = req.params.projectId;
   const tasks = await taskController.getTasksByProjectIdController({
     projectId,
   });
   res.json(tasks);
 });
 
-tasksRouter.post("/", async (req, res) => {
+tasksRouter.post("/:projectId", async (req, res) => {
+  const projectId = req.params.projectId;
   const { addedTask } = req.body;
-  const newTask = await taskController.createTaskController({ addedTask });
+  const newTask = await taskController.createTaskController({
+    addedTask,
+    projectId,
+  });
   res.status(201).json(newTask);
 });
 
