@@ -16,13 +16,13 @@ export default function ProjectPage() {
 
   useEffect(() => {
     fetchTasksByProjectId(id as string);
-  }, [id, fetchTasksByProjectId]);
+  }, [id]);
 
   return (
     <>
       <StatusWrapper loading={loading} error={error}>
         {type === "addProject" && <AddProjectModal />}
-        {type === "addTask" && <AddTaskModal />}
+        {type === "addTask" && <AddTaskModal projectId={id as string} />}
         {tasks && <Dashboard tasks={tasks} />}
       </StatusWrapper>
     </>
