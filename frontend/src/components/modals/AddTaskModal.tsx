@@ -2,14 +2,16 @@
 import { useState } from "react";
 import { useModalStore } from "../../stores/useModalStore";
 import { ModalWrapper } from "./ModalsWrapper";
-import { Task } from "../../../../types/task";
 import { useTasksStore } from "../../stores/useTasksStore";
 import Input from "../Input/Input";
+import { Task } from "../../types/task";
 
-export default function AddTaskModal() {
+export default function AddTaskModal({ projectId }: { projectId: string }) {
+  console.log("Project ID in AddTaskModal:", projectId);
+
   const [newTask, setTask] = useState<Task>({
     taskId: "",
-    projectId: "",
+    projectId: projectId,
     title: "",
     description: "",
     dueDate: "",
