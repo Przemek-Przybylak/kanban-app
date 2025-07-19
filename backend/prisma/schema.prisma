@@ -13,13 +13,25 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Project {
+  projectId   String   @id @default(uuid())     
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  tasks       Task[]   @relation("ProjectTasks") 
+  members     String[]                             
+
+  @@map("projects")                                
+}
+
 model Task {
   taskId     String   @id @default(uuid())     
-  projectId  String                            
+  projectId  String                         
   title      String
   description String
   dueDate    DateTime
-  project    String                             
+  project    Project @relation("ProjectTasks", fields: [projectId], references: [projectId])
   status     String
   assignees  String[]                           
   approvedBy String?                            
