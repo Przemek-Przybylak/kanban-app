@@ -1,6 +1,6 @@
-import { Task } from "../../../../types/task";
 import { StatusBadge } from "../modals/statusBadge";
 import { useModalStore } from "../../stores/useModalStore";
+import { Task } from "../../types/task";
 
 export default function TaskCard({ task }: { task: Task }) {
   const { title, description, dueDate, project, status } = task;

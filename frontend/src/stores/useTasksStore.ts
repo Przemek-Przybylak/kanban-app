@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { Task } from "../../../types/task";
 import {
   deleteTask,
   fetchTasksByProjectId,
@@ -7,6 +6,7 @@ import {
   postTask,
   putTask,
 } from "../lib/api";
+import { Task } from "../types/task";
 
 interface TasksStore {
   tasks: Task[];

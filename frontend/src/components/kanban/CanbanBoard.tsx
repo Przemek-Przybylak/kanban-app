@@ -1,6 +1,6 @@
-import { Task } from "../../../../types/task";
+import { Column } from "../../types/columns";
+import { Task } from "../../types/task";
 import CanbanColumn from "./CanbanColumn";
-import { Column } from "../../../../types/columns";
 
 const statusColumn: Column[] = [
   { colId: 1, colTitle: "To Do", value: "todo" },

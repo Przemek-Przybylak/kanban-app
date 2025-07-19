@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { ModalWrapper } from "./ModalsWrapper";
-import { Project } from "../../../../types/projects";
 import { useModalStore } from "../../stores/useModalStore";
 import { useProjectsStore } from "../../stores/useProjectsStore";
 import Input from "../Input/Input";
+import { Project } from "../../types/projects";
 
 export const AddProjectModal = () => {
   const [newProject, setNewProject] = useState<Project>({} as Project);
