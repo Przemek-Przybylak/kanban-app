@@ -1,4 +1,4 @@
-import { Task } from "../data/tasks";
+import { Task } from "../types/task";
 import * as taskService from "../services/taskService";
 
 export async function getTasksByProjectIdController({
@@ -9,8 +9,14 @@ export async function getTasksByProjectIdController({
   return await taskService.getTasksByProjectId({ projectId });
 }
 
-export async function createTaskController({ addedTask }: { addedTask: Task }) {
-  return await taskService.addTask({ addedTask });
+export async function createTaskController({
+  addedTask,
+  projectId,
+}: {
+  addedTask: Task;
+  projectId: string;
+}) {
+  return await taskService.addTask({ addedTask, projectId });
 }
 
 export async function deleteTaskController(taskId: string) {
