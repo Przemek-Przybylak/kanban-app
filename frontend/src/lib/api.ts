@@ -1,5 +1,5 @@
-import { Project } from "../../../types/projects";
-import { Task } from "../../../types/task";
+import { Project } from "../types/projects";
+import { Task } from "../types/task";
 
 export async function fetchProjects() {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/projects`);
@@ -77,13 +77,16 @@ export async function fetchTask(taskId: string) {
 }
 
 export async function postTask(addedTask: Task) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tasks`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ addedTask }),
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/tasks/${addedTask.projectId}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ addedTask }),
+    }
+  );
 
   if (!response.ok) throw new Error("Failed to add task");
   return response.json();
