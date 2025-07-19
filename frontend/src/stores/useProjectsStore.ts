@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { Project } from "../../../types/projects";
 import {
   deleteProject,
   fetchProject,
@@ -7,6 +6,7 @@ import {
   postProject,
   putProject,
 } from "../lib/api";
+import { Project } from "../types/projects";
 
 interface ProjectsStore {
   project: Project | null;
