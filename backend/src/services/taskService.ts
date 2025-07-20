@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { Task } from "../types/task";
-
-const prisma = new PrismaClient();
+import prisma from "../lib/prismaClient";
 
 export async function getTasksByProjectId({
   projectId,

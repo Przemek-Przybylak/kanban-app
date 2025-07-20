@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { Project } from "../types/projects";
-
-const prisma = new PrismaClient();
+import prisma from "../lib/prismaClient";
 
 export async function getProject(projectId: string) {
   return await prisma.project.findUnique({
