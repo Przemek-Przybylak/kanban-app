@@ -37,6 +37,7 @@ export default function SideBar() {
               : "hidden lg:block p-5 m-4"
           }
           w-auto lg:w-1/5 lg:max-w-[280px]
+          overflow-y-auto
         `}
       >
         <h2 className="text-xl font-bold mb-6 text-gray-800">Projects</h2>
