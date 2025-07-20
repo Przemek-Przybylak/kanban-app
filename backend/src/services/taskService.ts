@@ -23,11 +23,12 @@ export async function addTask({
   try {
     const result = await prisma.task.create({
       data: {
-        projectId: projectId,
+        project: {
+          connect: { projectId: projectId },
+        },
         title: addedTask.title,
         description: addedTask.description,
         dueDate: new Date(addedTask.dueDate),
-        project: addedTask.project,
         status: addedTask.status || "todo",
         assignees: addedTask.assignees || [],
         approvedBy: addedTask.approvedBy || undefined,
@@ -47,11 +48,14 @@ export async function deleteTask(taskId: string) {
 }
 
 export async function editTask(taskId: string, newData: Partial<Task>) {
+  const { project, ...cleanData } = newData; // usuwamy 'project' z obiektu
+
   return await prisma.task.update({
     where: { taskId },
+
     data: {
-      ...newData,
-      dueDate: newData.dueDate ? new Date(newData.dueDate) : undefined,
+      ...cleanData,
+      dueDate: cleanData.dueDate ? new Date(cleanData.dueDate) : undefined,
     },
   });
 }
