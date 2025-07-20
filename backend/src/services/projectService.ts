@@ -1,4 +1,3 @@
-import { PrismaClient } from "@prisma/client";
 import { Project } from "../types/projects";
 import prisma from "../lib/prismaClient";
 
