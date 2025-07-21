@@ -3,6 +3,7 @@ import projectsRouter from "./routes/projects";
 import cors from "cors";
 import tasksRouter from "./routes/tasks";
 import dotenv from "dotenv";
+console.log("DATABASE_URL:", process.env.DATABASE_URL);
 
 dotenv.config();
 const app = express();
