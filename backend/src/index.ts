@@ -2,7 +2,9 @@ import express from "express";
 import projectsRouter from "./routes/projects";
 import cors from "cors";
 import tasksRouter from "./routes/tasks";
+import dotenv from "dotenv";
 
+dotenv.config();
 const app = express();
 
 const allowedOrigins = [
