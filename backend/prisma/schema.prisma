@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,29 +8,28 @@ datasource db {
 }
 
 model Project {
-  projectId   String   @id @default(uuid())     
-  title        String
+  projectId   String   @id @default(uuid())
   description String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  tasks       Task[]   @relation("ProjectTasks") 
-  members     String[]                             
+  members     String[]
+  title       String
+  tasks       Task[]   @relation("ProjectTasks")
 
-  @@map("projects")                                
+  @@map("projects")
 }
 
 model Task {
-  taskId     String   @id @default(uuid())     
-  projectId  String                         
-  title      String
+  taskId      String   @id @default(uuid())
+  projectId   String
+  title       String
   description String
-  dueDate    DateTime
-  project    Project @relation("ProjectTasks", fields: [projectId], references: [projectId], onDelete: Cascade)
-  status     String
-  assignees  String[]                           
-  approvedBy String?                            
-  createdAt  DateTime @default(now())
+  dueDate     DateTime
+  status      String
+  assignees   String[]
+  approvedBy  String?
+  createdAt   DateTime @default(now())
+  project     Project  @relation("ProjectTasks", fields: [projectId], references: [projectId], onDelete: Cascade)
 
-  @@map("tasks")                                
+  @@map("tasks")
 }
-
