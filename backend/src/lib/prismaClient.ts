@@ -1,14 +1,9 @@
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient({
-  datasources: {
-    db: {
-      url:
-        process.env.NODE_ENV === "production"
-          ? process.env.DATABASE_URL_PROD
-          : process.env.DATABASE_URL,
-    },
-  },
-});
+if (!process.env.DATABASE_URL) {
+  console.error("❌ DATABASE_URL is not defined!");
+  process.exit(1);
+}
 
+const prisma = new PrismaClient();
 export default prisma;
