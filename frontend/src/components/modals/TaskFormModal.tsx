@@ -5,10 +5,13 @@ import { ModalWrapper } from "./ModalsWrapper";
 import { useTasksStore } from "../../stores/useTasksStore";
 import Input from "../Input/Input";
 import { Task } from "../../types/task";
+import { useParams } from "next/navigation";
 
-export default function AddTaskModal({ projectId }: { projectId: string }) {
-  console.log("Project ID in AddTaskModal:", projectId);
-
+export default function TaskFormModal() {
+  const projectId = useParams().id as string;
+  const [assigneeInput, setAssigneeInput] = useState("");
+  const { type, closeModal } = useModalStore();
+  const { addTask } = useTasksStore();
   const [newTask, setTask] = useState<Task>({
     taskId: "",
     projectId: projectId,
@@ -20,9 +23,6 @@ export default function AddTaskModal({ projectId }: { projectId: string }) {
     approvedBy: "",
     project: "",
   });
-  const [assigneeInput, setAssigneeInput] = useState("");
-  const { type, closeModal } = useModalStore();
-  const { addTask } = useTasksStore();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
