@@ -18,22 +18,22 @@ export default function TaskFormModal() {
     return null;
   }
 
-  const [taskData, setTaskData] = useState<Task>(() => {
-    if (type === "editTask" && data && "taskId" in data) {
-      return data as Task;
-    }
-    return {
-      taskId: "",
-      projectId: projectId,
-      title: "",
-      description: "",
-      dueDate: "",
-      status: "todo",
-      assignees: [],
-      approvedBy: "",
-      project: "",
-    };
-  });
+  const initialTaskData: Task =
+    type === "editTask" && data && "taskId" in data
+      ? (data as Task)
+      : {
+          taskId: "",
+          projectId: projectId,
+          title: "",
+          description: "",
+          dueDate: "",
+          status: "todo",
+          assignees: [],
+          approvedBy: "",
+          project: "",
+        };
+
+  const [taskData, setTaskData] = useState<Task>(initialTaskData);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

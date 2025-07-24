@@ -5,7 +5,6 @@ import { useParams } from "next/navigation";
 import StatusWrapper from "../../../components/StatusWrapper/StatusWrapper";
 import Dashboard from "../../../components/Dashboard/Dashboard";
 import { AddProjectModal } from "../../../components/modals/AddProjectModal";
-import AddTaskModal from "../../../components/modals/TaskFormModal";
 import { useModalStore } from "../../../stores/useModalStore";
 import { useTasksStore } from "../../../stores/useTasksStore";
 import TaskFormModal from "../../../components/modals/TaskFormModal";
