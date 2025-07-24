@@ -74,7 +74,9 @@ export default function TaskFormModal() {
   return (
     <ModalWrapper isOpen={isOpen} onClose={closeModal}>
       <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-xl">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">Add New Task</h2>
+        <h2 className="text-2xl font-bold text-gray-800 mb-6">
+          {type === "addTask" ? "Add New Task" : "Edit Task"}
+        </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
             label="Task title"
