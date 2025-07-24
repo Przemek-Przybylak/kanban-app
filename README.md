@@ -17,7 +17,7 @@ This app is still in active development and is being used as a learning playgrou
 - **Frontend**: [kanban-app-sage-eta.vercel.app](https://kanban-app-sage-eta.vercel.app)
 - **Backend**: [kanban-app-1-2rpk.onrender.com](https://kanban-app-1-2rpk.onrender.com)
 
-> ⚠️ Note: Currently using mock data and environment variables are not fully wired for production.
+> ⚠️ Note: Frontend, backend, and database are deploy ( Vercel, Render, Railway ), so it's production version!
 
 ---
 
