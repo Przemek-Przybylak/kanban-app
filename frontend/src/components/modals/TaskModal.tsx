@@ -7,6 +7,7 @@ import { Task } from "../../types/task";
 
 export default function TaskModal() {
   const { data, type, closeModal } = useModalStore();
+  const openModal = useModalStore((state) => state.openModal);
   const { deleteTask } = useTasksStore();
 
   if (type !== "task") return null;
@@ -67,6 +68,9 @@ export default function TaskModal() {
         className="ml-2"
       >
         Delete Task
+      </Button>
+      <Button onClick={() => openModal("editTask", task)} className="ml-2">
+        Edit Task
       </Button>
     </ModalWrapper>
   );
