@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import { useModalStore } from "../../stores/useModalStore";
 import { ModalWrapper } from "./ModalsWrapper";
@@ -10,58 +11,78 @@ import { useParams } from "next/navigation";
 export default function TaskFormModal() {
   const projectId = useParams().id as string;
   const [assigneeInput, setAssigneeInput] = useState("");
-  const { type, closeModal } = useModalStore();
-  const { addTask } = useTasksStore();
-  const [newTask, setTask] = useState<Task>({
-    taskId: "",
-    projectId: projectId,
-    title: "",
-    description: "",
-    dueDate: "",
-    status: "todo",
-    assignees: [],
-    approvedBy: "",
-    project: "",
+  const { type, isOpen, closeModal, data } = useModalStore();
+  const { addTask, editTask } = useTasksStore();
+
+  if (!isOpen || (type !== "addTask" && type !== "editTask")) {
+    return null;
+  }
+
+  const [taskData, setTaskData] = useState<Task>(() => {
+    if (type === "editTask" && data && "taskId" in data) {
+      return data as Task;
+    }
+    return {
+      taskId: "",
+      projectId: projectId,
+      title: "",
+      description: "",
+      dueDate: "",
+      status: "todo",
+      assignees: [],
+      approvedBy: "",
+      project: "",
+    };
   });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    addTask({
-      ...newTask,
-      taskId: Math.random().toString(36).substring(2, 9), // generowanie losowego ID
-    });
-    closeModal();
+
+    try {
+      if (type === "addTask") {
+        await addTask({
+          ...taskData,
+          taskId: Math.random().toString(36).substring(2, 9),
+        });
+      } else if (type === "editTask") {
+        await editTask(taskData.taskId, taskData);
+      }
+
+      closeModal();
+    } catch (error) {
+      console.error("Error saving task:", error);
+    }
   };
 
   const handleAddAssignee = () => {
     if (assigneeInput.trim() !== "") {
-      setTask({
-        ...newTask,
-        assignees: [...newTask.assignees, assigneeInput.trim()],
+      setTaskData({
+        ...taskData,
+        assignees: [...taskData.assignees, assigneeInput.trim()], //TODO: take this to backend
       });
       setAssigneeInput("");
     }
   };
 
   const removeAssignee = (index: number) => {
-    setTask({
-      ...newTask,
-      assignees: newTask.assignees.filter((_, i) => i !== index),
+    setTaskData({
+      ...taskData,
+      assignees: taskData.assignees.filter((_, i) => i !== index), //TODO: take this to backend
     });
   };
 
-  if (type !== "addTask") return null;
-
   return (
-    <ModalWrapper isOpen={true} onClose={closeModal}>
+    <ModalWrapper isOpen={isOpen} onClose={closeModal}>
       <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-xl">
         <h2 className="text-2xl font-bold text-gray-800 mb-6">Add New Task</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
             label="Task title"
             type="text"
-            value={newTask.title}
-            onChange={(e) => setTask({ ...newTask, title: e.target.value })}
+            value={taskData.title}
+            onChange={(e) =>
+              setTaskData({ ...taskData, title: e.target.value })
+            }
             required
           />
 
@@ -72,9 +93,9 @@ export default function TaskFormModal() {
             <textarea
               className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               rows={3}
-              value={newTask.description}
+              value={taskData.description}
               onChange={(e) =>
-                setTask({ ...newTask, description: e.target.value })
+                setTaskData({ ...taskData, description: e.target.value })
               }
             />
           </div>
@@ -82,8 +103,10 @@ export default function TaskFormModal() {
           <Input
             label="Due Date"
             type="date"
-            value={newTask.dueDate}
-            onChange={(e) => setTask({ ...newTask, dueDate: e.target.value })}
+            value={taskData.dueDate}
+            onChange={(e) =>
+              setTaskData({ ...taskData, dueDate: e.target.value })
+            }
           />
 
           <div>
@@ -92,10 +115,10 @@ export default function TaskFormModal() {
             </label>
             <select
               className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              value={newTask.status}
+              value={taskData.status}
               onChange={(e) =>
-                setTask({
-                  ...newTask,
+                setTaskData({
+                  ...taskData,
                   status: e.target.value as Task["status"],
                 })
               }
@@ -123,13 +146,13 @@ export default function TaskFormModal() {
             </button>
           </div>
 
-          {newTask.assignees.length > 0 && (
+          {taskData.assignees.length > 0 && (
             <div className="bg-gray-50 p-3 rounded-md">
               <h3 className="text-sm font-medium text-gray-700 mb-2">
                 Assigned to:
               </h3>
               <ul className="space-y-1">
-                {newTask.assignees.map((assignee, index) => (
+                {taskData.assignees.map((assignee, index) => (
                   <li
                     key={index}
                     className="flex items-center justify-between bg-white px-3 py-1 rounded"
@@ -151,9 +174,9 @@ export default function TaskFormModal() {
           <Input
             label="Approved By"
             type="text"
-            value={newTask.approvedBy}
+            value={taskData.approvedBy}
             onChange={(e) =>
-              setTask({ ...newTask, approvedBy: e.target.value })
+              setTaskData({ ...taskData, approvedBy: e.target.value })
             }
           />
 
