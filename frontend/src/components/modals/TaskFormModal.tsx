@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useModalStore } from "../../stores/useModalStore";
 import { ModalWrapper } from "./ModalsWrapper";
 import { useTasksStore } from "../../stores/useTasksStore";
@@ -10,30 +10,47 @@ import { useParams } from "next/navigation";
 
 export default function TaskFormModal() {
   const projectId = useParams().id as string;
-  const [assigneeInput, setAssigneeInput] = useState("");
   const { type, isOpen, closeModal, data } = useModalStore();
   const { addTask, editTask } = useTasksStore();
+
+  const [assigneeInput, setAssigneeInput] = useState("");
+  const [taskData, setTaskData] = useState<Task>({
+    taskId: "",
+    projectId,
+    title: "",
+    description: "",
+    dueDate: "",
+    status: "todo",
+    assignees: [],
+    approvedBy: "",
+    project: "",
+  });
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    if (type === "editTask" && data && "taskId" in data) {
+      setTaskData(data as Task);
+    }
+
+    if (type === "addTask") {
+      setTaskData({
+        taskId: "",
+        projectId,
+        title: "",
+        description: "",
+        dueDate: "",
+        status: "todo",
+        assignees: [],
+        approvedBy: "",
+        project: "",
+      });
+    }
+  }, [isOpen, type, data, projectId]);
 
   if (!isOpen || (type !== "addTask" && type !== "editTask")) {
     return null;
   }
-
-  const initialTaskData: Task =
-    type === "editTask" && data && "taskId" in data
-      ? (data as Task)
-      : {
-          taskId: "",
-          projectId: projectId,
-          title: "",
-          description: "",
-          dueDate: "",
-          status: "todo",
-          assignees: [],
-          approvedBy: "",
-          project: "",
-        };
-
-  const [taskData, setTaskData] = useState<Task>(initialTaskData);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -58,7 +75,7 @@ export default function TaskFormModal() {
     if (assigneeInput.trim() !== "") {
       setTaskData({
         ...taskData,
-        assignees: [...taskData.assignees, assigneeInput.trim()], //TODO: take this to backend
+        assignees: [...taskData.assignees, assigneeInput.trim()],
       });
       setAssigneeInput("");
     }
@@ -67,7 +84,7 @@ export default function TaskFormModal() {
   const removeAssignee = (index: number) => {
     setTaskData({
       ...taskData,
-      assignees: taskData.assignees.filter((_, i) => i !== index), //TODO: take this to backend
+      assignees: taskData.assignees.filter((_, i) => i !== index),
     });
   };
 
