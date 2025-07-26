@@ -3,7 +3,7 @@ import projectsRouter from "./routes/projects";
 import cors from "cors";
 import tasksRouter from "./routes/tasks";
 import dotenv from "dotenv";
-console.log("DATABASE_URL:", process.env.DATABASE_URL);
+import errorHandler from "./middleware/errorHandler";
 
 dotenv.config();
 const app = express();
@@ -28,6 +28,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/api/projects", projectsRouter);
 app.use("/api/tasks", tasksRouter);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
