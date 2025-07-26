@@ -18,12 +18,11 @@ projectsRouter.get("/:id", async (req, res) => {
   }
 });
 
-projectsRouter.post("/", async (req, res) => {
+projectsRouter.post("/", async (req, res, next) => {
   const newProject = req.body;
 
   if (!newProject.title) {
-    res.status(400).json({ error: "Name are required" });
-    return;
+    return next(new Error("Title is required"));
   }
   try {
     const createdProject = await projectController.createProjectController(
@@ -31,8 +30,7 @@ projectsRouter.post("/", async (req, res) => {
     );
     res.status(201).json(createdProject);
   } catch (error) {
-    console.error("Error creating project:", error);
-    res.status(500).json({ error: "Failed to create project" });
+    next(error);
   }
 });
 
