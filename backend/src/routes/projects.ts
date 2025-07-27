@@ -3,18 +3,26 @@ import * as projectController from "../controllers/projectControllers";
 
 const projectsRouter = express.Router();
 
-projectsRouter.get("/", async (req, res) => {
-  const projects = await projectController.getProjectsController();
-  res.json(projects);
+projectsRouter.get("/", async (req, res, next) => {
+  try {
+    const projects = await projectController.getProjectsController();
+    res.json(projects);
+  } catch (error) {
+    next(error);
+  }
 });
 
-projectsRouter.get("/:id", async (req, res) => {
+projectsRouter.get("/:id", async (req, res, next) => {
   const projectId = req.params.id;
-  const project = await projectController.getProjectController({ projectId });
-  if (project) {
-    res.json(project);
-  } else {
-    res.status(404).json({ error: "Project not found" });
+  try {
+    const project = await projectController.getProjectController({ projectId });
+    if (project) {
+      res.json(project);
+    } else {
+      return next(new Error("Project not found"));
+    }
+  } catch (error) {
+    next(error);
   }
 });
 
@@ -34,28 +42,36 @@ projectsRouter.post("/", async (req, res, next) => {
   }
 });
 
-projectsRouter.put("/:id", async (req, res) => {
-  // console.log("PUT /projects/:id - BODY:", req.body); //
+projectsRouter.put("/:id", async (req, res, next) => {
   const projectId = req.params.id;
-  const newDatat = req.body;
-  const updatedProject = await projectController.editProjectController(
-    projectId,
-    newDatat
-  );
-  if (updatedProject) {
-    res.status(200).json(updatedProject);
-  } else {
-    res.status(404).json({ error: "Project not found" });
+  const newData = req.body;
+
+  try {
+    const updatedProject = await projectController.editProjectController(
+      projectId,
+      newData
+    );
+    if (updatedProject) {
+      res.status(200).json(updatedProject);
+    } else {
+      return next(new Error("Project not found or update failed"));
+    }
+  } catch (error) {
+    next(error);
   }
 });
 
-projectsRouter.delete("/:id", async (req, res) => {
+projectsRouter.delete("/:id", async (req, res, next) => {
   const projectId = req.params.id;
-  const deleted = await projectController.deleteProjectController(projectId);
-  if (deleted) {
-    res.status(204).send();
-  } else {
-    res.status(404).json({ error: "Project not found" });
+  try {
+    const deleted = await projectController.deleteProjectController(projectId);
+    if (deleted) {
+      res.status(204).send();
+    } else {
+      return next(new Error("Project not found"));
+    }
+  } catch (error) {
+    next(error);
   }
 });
 
