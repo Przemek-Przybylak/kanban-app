@@ -34,13 +34,14 @@ export async function addTask({
     });
     return result;
   } catch (error) {
-    console.error("Error creating task:", error);
+    console.error("Error creating task in taskService:", error);
     throw error;
   }
 }
 
 export async function deleteTask(taskId: string) {
-  await prisma.task.delete({
+  console.log("Deleting task with ID:", taskId);
+  return await prisma.task.delete({
     where: { taskId },
   });
 }
