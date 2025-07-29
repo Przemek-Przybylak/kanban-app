@@ -4,8 +4,9 @@ const config: Config = {
   preset: "ts-jest",
   testEnvironment: "jsdom",
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
-  moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
-  testMatch: ["**/*.test.(ts|tsx)"],
+  moduleNameMapper: {
+    "^@/(.*)$": "<rootDir>/src/$1", // jeśli używasz aliasów
+  },
 };
 
 export default config;
