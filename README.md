@@ -73,13 +73,13 @@ This project was created to:
 
 ## 📌 Roadmap
 
-- [ ] CRUD for projects & tasks (add, edit, delete)
-- [ ] Connect a real database (PostgreSQL or SQLite via Prisma)
+- [x] CRUD for projects & tasks (add, edit, delete) ✅
+- [x] Connect a real database (PostgreSQL or SQLite via Prisma) ✅
+- [x] Style responsiveness across all screen sizes ✅
+- [x] Write unit/integration tests (Jest, React Testing Library) ✅
+- [ ] Add E2E testing (Cypress or Playwright)
 - [ ] Add user authentication & accounts
 - [ ] Improve error and loading states (dedicated components)
-- [ ] Style responsiveness across all screen sizes
-- [ ] Write unit/integration tests (Jest, React Testing Library)
-- [ ] Add E2E testing (Cypress or Playwright)
 - [ ] Add CI/CD & containerization (Docker, GitHub Actions)
 
 ---
