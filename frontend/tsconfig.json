@@ -1,17 +1,9 @@
 {
   "compilerOptions": {
-    "jsx": "preserve",
-    "types": [
-      "jest",
-      "node",
-      "@testing-library/jest-dom"
-    ],
+    "jsx": "react-jsx",
+    "types": ["jest", "node", "@testing-library/jest-dom"],
     "target": "ES2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -28,9 +20,7 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./frontend/src/*"
-      ]
+      "@/*": ["./frontend/src/*"]
     }
   },
   "include": [
@@ -43,7 +33,5 @@
     "../types/projects.ts",
     "../types/task.ts"
   ],
-  "exclude": [
-    "frontend/node_modules"
-  ]
+  "exclude": ["frontend/node_modules"]
 }
