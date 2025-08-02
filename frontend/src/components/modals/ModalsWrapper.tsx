@@ -19,6 +19,8 @@ export const ModalWrapper: React.FC<ModalWrapperProps> = ({
       onClick={onClose}
     >
       <div
+        role="dialog"
+        aria-modal="true"
         className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-lg mx-4 relative"
         onClick={(e) => e.stopPropagation()}
       >
