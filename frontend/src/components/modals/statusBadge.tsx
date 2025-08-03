@@ -1,3 +1,4 @@
+import React from "react";
 import { Task } from "../../types/task";
 
 const statusClasses: Record<Task["status"], string> = {

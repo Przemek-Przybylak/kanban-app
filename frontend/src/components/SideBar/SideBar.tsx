@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import React from "react";
 import { useProjectsStore } from "../../stores/useProjectsStore";
 import Link from "next/link";
 import StatusWrapper from "../StatusWrapper/StatusWrapper";
@@ -9,9 +10,9 @@ import { useModalStore } from "../../stores/useModalStore";
 import { FiMenu, FiX } from "react-icons/fi";
 
 export default function SideBar() {
-  const { fetchProjects, projects, loading, error } = useProjectsStore();
+  const { fetchProjects, projects, deleteProject, loading, error } =
+    useProjectsStore();
   const { openModal } = useModalStore();
-  const { deleteProject } = useProjectsStore();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {

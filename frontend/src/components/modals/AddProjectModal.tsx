@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { useState } from "react";
 import { ModalWrapper } from "./ModalsWrapper";
 import { useModalStore } from "../../stores/useModalStore";

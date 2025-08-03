@@ -1,3 +1,4 @@
+import React from "react";
 import { StatusBadge } from "./statusBadge";
 import { ModalWrapper } from "./ModalsWrapper";
 import { useModalStore } from "../../stores/useModalStore";
@@ -8,7 +9,7 @@ import { Task } from "../../types/task";
 export default function TaskModal() {
   const { data, type, closeModal } = useModalStore();
   const openModal = useModalStore((state) => state.openModal);
-  const { deleteTask } = useTasksStore();
+  const deleteTask = useTasksStore((state) => state.deleteTask);
 
   if (type !== "task") return null;
   const task = data as Task;

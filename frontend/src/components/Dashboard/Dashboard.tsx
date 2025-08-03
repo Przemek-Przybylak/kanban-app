@@ -1,9 +1,10 @@
 "use client";
 
-import CanbanBoard from "../../components/kanban/CanbanBoard";
+import React from "react";
 import TaskModal from "../../components/modals/TaskModal";
 import { useModalStore } from "../../stores/useModalStore";
 import { Task } from "../../types/task";
+import CanbanBoard from "../kanban/CanbanBoard/CanbanBoard";
 
 type Props = {
   tasks: Task[];

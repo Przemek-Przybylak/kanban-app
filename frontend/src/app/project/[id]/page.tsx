@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { useParams } from "next/navigation";
+import React from "react";
 import StatusWrapper from "../../../components/StatusWrapper/StatusWrapper";
 import Dashboard from "../../../components/Dashboard/Dashboard";
 import { AddProjectModal } from "../../../components/modals/AddProjectModal";
