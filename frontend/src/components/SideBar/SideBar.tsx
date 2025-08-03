@@ -50,7 +50,7 @@ export default function SideBar() {
 
         <StatusWrapper loading={loading} error={error}>
           <ul className="space-y-4">
-            {projects.map((project) => (
+            {projects?.map((project) => (
               <li key={project.projectId} className="flex flex-col gap-2">
                 <Link
                   className="mb-2 px-3 py-2 bg-white rounded-lg shadow-sm hover:shadow-md transition-all 
