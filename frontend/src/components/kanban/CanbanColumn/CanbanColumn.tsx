@@ -1,7 +1,8 @@
-import { useModalStore } from "../../stores/useModalStore";
-import { Task } from "../../types/task";
-import Button from "../Button/Button";
-import TaskCard from "./TaskCard";
+import React from "react";
+import { useModalStore } from "../../../stores/useModalStore";
+import { Task } from "../../../types/task";
+import Button from "../../Button/Button";
+import TaskCard from "../TaskCard/TaskCard";
 
 export default function CanbanColumn({ tasks }: { tasks: Task[] }) {
   const status = tasks.length > 0 ? tasks[0].status : "No tasks";
