@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import TaskCard from "./TaskCard";
 import { Task } from "../../../types/task";
+import * as modalStore from "../../../stores/useModalStore";
 
 describe("TaskCard", () => {
   const task: Task = {
@@ -24,11 +25,14 @@ describe("TaskCard", () => {
 
   test("calls openModal with task when card is clicked", () => {
     const openModalMock = jest.fn();
-    jest
-      .spyOn(require("../../../stores/useModalStore"), "useModalStore")
-      .mockReturnValue({
-        openModal: openModalMock,
-      });
+
+    jest.spyOn(modalStore, "useModalStore").mockReturnValue({
+      openModal: openModalMock,
+      closeModal: jest.fn(),
+      isOpen: false,
+      type: null,
+      data: null,
+    });
 
     render(<TaskCard task={task} />);
 
