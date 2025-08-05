@@ -44,14 +44,15 @@ export default function TaskModal() {
       <div className="mb-6">
         <h3 className="font-semibold text-gray-800 mb-2">Osoby przypisane:</h3>
         <ul className="flex flex-wrap gap-2">
-          {assignees.map((name) => (
-            <li
-              key={name}
-              className="bg-gray-100 px-3 py-1 rounded-full text-sm text-gray-700"
-            >
-              {name}
-            </li>
-          ))}
+          {assignees &&
+            assignees.map((name) => (
+              <li
+                key={name}
+                className="bg-gray-100 px-3 py-1 rounded-full text-sm text-gray-700"
+              >
+                {name}
+              </li>
+            ))}
         </ul>
       </div>
       {approvedBy ? (

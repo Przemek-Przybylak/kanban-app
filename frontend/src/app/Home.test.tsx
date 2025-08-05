@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import Home from "./page";
 import { useModalStore } from "../stores/useModalStore";
-import { unknown } from "zod";
 
 jest.mock("../stores/useModalStore", () => ({
   useModalStore: jest.fn(),

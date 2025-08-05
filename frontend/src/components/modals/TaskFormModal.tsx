@@ -76,7 +76,7 @@ export default function TaskFormModal() {
     if (assigneeInput.trim() !== "") {
       setTaskData({
         ...taskData,
-        assignees: [...taskData.assignees, assigneeInput.trim()],
+        assignees: [...(taskData.assignees ?? []), assigneeInput.trim()],
       });
       setAssigneeInput("");
     }
@@ -85,7 +85,7 @@ export default function TaskFormModal() {
   const removeAssignee = (index: number) => {
     setTaskData({
       ...taskData,
-      assignees: taskData.assignees.filter((_, i) => i !== index),
+      assignees: (taskData.assignees ?? []).filter((_, i) => i !== index),
     });
   };
 
@@ -166,7 +166,7 @@ export default function TaskFormModal() {
             </button>
           </div>
 
-          {taskData.assignees.length > 0 && (
+          {taskData.assignees && taskData.assignees.length > 0 && (
             <div className="bg-gray-50 p-3 rounded-md">
               <h3 className="text-sm font-medium text-gray-700 mb-2">
                 Assigned to:

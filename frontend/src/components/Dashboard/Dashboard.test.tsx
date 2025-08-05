@@ -9,10 +9,8 @@ jest.mock("../../stores/useTasksStore", () => ({
 }));
 
 import { useModalStore } from "../../stores/useModalStore";
-import { useTasksStore } from "../../stores/useTasksStore";
 
 const mockUseModalStore = useModalStore as unknown as jest.Mock;
-const mockUseTasksStore = useTasksStore as unknown as jest.Mock;
 
 describe("Dashboard", () => {
   it("renders TaskModal when isOpen is true and type is 'task'", () => {

@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, within } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import CanbanBoard from "./CanbanBoard";
 import { Task } from "../../../types/task";
 
