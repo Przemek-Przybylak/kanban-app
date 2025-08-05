@@ -3,9 +3,9 @@ export interface Task {
   projectId: string;
   title: string;
   description: string;
-  dueDate: string;
-  project: string;
+  dueDate?: string;
+  project?: string;
   status: string;
-  assignees: string[];
-  approvedBy: string | undefined;
+  assignees?: string[];
+  approvedBy?: string | undefined;
 }
